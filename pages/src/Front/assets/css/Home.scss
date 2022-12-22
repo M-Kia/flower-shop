@@ -1,0 +1,25 @@
+.Header {
+  .navbar-brand,
+  .nav-link {
+    color: hsl(14.53, 42.22%, 44.12%) !important;
+    &:active , &:hover{
+      color: hsl(14.53, 42.22%, 70%) !important;
+    }
+  }
+  .dropdown-toggle::after {
+    display: none;
+  }
+  .dropdown-menu.show {
+    background-color: #ffffff;
+    .dropdown-item {
+      color: #993d1e !important;
+      &:active,
+      &:hover {
+        background-color: #ededee;
+      }
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+}
