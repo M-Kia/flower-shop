@@ -1,8 +1,24 @@
+.shopbtn {
+  background-color: #a05841;
+  color: #ffffff !important;
+  border: #a05841;
+  border-radius: 0px;
+  padding: 7px 50px;
+  margin-top: 30px;
+  &:hover {
+    background-color: #a05941a9;
+  }
+  &:focus-visible,
+  &:active {
+    background-color: #7c4533 !important;
+  }
+}
 .Header {
   .navbar-brand,
   .nav-link {
     color: hsl(14.53, 42.22%, 44.12%) !important;
-    &:active , &:hover{
+    &:active,
+    &:hover {
       color: hsl(14.53, 42.22%, 70%) !important;
     }
   }
@@ -20,6 +36,128 @@
       &:focus-visible {
         outline: none;
       }
+    }
+  }
+
+  // .headerimage{
+  // }
+}
+.Footer {
+  text-align: center;
+  padding: 80px 0px;
+  background-color: #123132;
+  color: white;
+  letter-spacing: 2px;
+  .title {
+    letter-spacing: 10px !important;
+    font-size: x-large;
+    margin-bottom: 10px;
+  }
+  a {
+    color: white;
+  }
+  & .subscribe {
+    margin-top: 20px;
+    .form-control {
+      background: none;
+      color: white !important;
+      &:focus {
+        border-color: white;
+        box-shadow:0 0 0 0.25rem rgba(223, 236, 255, 0.25)
+      }
+    }
+    & .shopbtn {
+      letter-spacing: normal;
+      background-color: white;
+      color: #123132 !important;
+      margin-top: 0px;
+      margin-left: 20px;
+      &:hover {
+        background-color: #295253;
+        color: white !important;
+      }
+      &:focus-visible,
+      &:active {
+        background-color: #1e3838 !important;
+      }
+    }
+  }
+
+  & .accounts{
+    a{
+      text-decoration: none;
+      margin-right: 15px;
+    }
+  }
+}
+.mainPageBody {
+  margin-top: 50px;
+  & .card {
+    border: none;
+    border-radius: 0px;
+    color: #a05841 !important;
+    text-align: center;
+    & .card-img {
+      border-radius: 0px;
+    }
+    & .card-img-overlay {
+      border: none;
+      border-radius: 0px;
+      padding-top: 50px;
+      & .card-title {
+        font-size: x-large;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover {
+          color: #a05941a9 !important;
+        }
+      }
+      & .card-text {
+        font-size: x-large;
+        font-weight: 900;
+      }
+      & .shopbtn {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  & .about {
+    background-color: white;
+    margin-top: 50px;
+    text-align: center;
+    color: #a05841 !important;
+    .row {
+      margin: auto 0px;
+    }
+    img {
+      height: 430px;
+      padding: 0px;
+    }
+    & .card-text {
+      font-size: x-large;
+      font-weight: 900;
+    }
+
+    & .shopbtn {
+      background-color: white;
+      color: #123132 !important;
+      &:hover {
+        background-color: #295253;
+        color: white !important;
+      }
+      &:focus-visible,
+      &:active {
+        background-color: #1e3838 !important;
+      }
+    }
+  }
+
+  .form-control {
+  
+    &:focus {
+      border-color: white;
+      box-shadow: 0 0 0 0.25rem #a058413d
     }
   }
 }

@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import background from "../assets/images/pexels-huy-phan-3076899.jpg";
+import planticon from "../assets/images/potted-plant.png";
 export default function Header() {
+  const [checkText, setCheckText] = useState(true);
+
+  useEffect(() => {
+    const Text = setTimeout(() => {
+      setCheckText((checkText) => !checkText);
+    }, 5000);
+
+    return () => clearInterval(Text);
+  }, [checkText]);
+
   return (
     <div className="Header">
       <div className="text-center mt-3 fs-2" style={{ color: "#a05841" }}>
@@ -63,55 +74,92 @@ export default function Header() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  فروشگاه
+                  store
                 </a>
                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="#">
-                      گیاهان آپارتمانی
+                      plants
                     </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
-                      کاکتوس
+                      cactus
                     </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
-                      ساکولنت
+                      succulent
                     </a>
                   </li>
                 </ul>
               </li>
               <a className="nav-link" href="#">
-                درباره ما
+                about
               </a>
               <a className="nav-link" href="#">
-                پرسش و پاسخ
+                FAQ
               </a>
-              <a className="nav-link disabled">سرگرمی</a>
+              <a className="nav-link disabled">entertainment</a>
             </div>
+          </div>
+          <div
+            style={{ fontSize: "larger", color: "#a05841", fontWeight: "600" }}
+          >
+            {checkText
+              ? "We Deliver to Your Doorstep"
+              : "Call Us Now! 123-456-7890"}
           </div>
         </div>
       </nav>
 
       <div
-        className="card text-bg-dark"
-        style={{ boxShadow: "4px 4px 20px 0px #0000007d", border: "none" }}
+        className="card text-bg-dark headerimage"
+        style={{ border: "none", position: "relative" }}
       >
         <img
           src={background.src}
           className="card-img"
           alt="..."
-          style={{ height: "650px", objectFit: "cover" }}
+          style={{
+            height: "650px",
+            objectFit: "cover",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
         />
-        <div className="card-img-overlay">
+        <div
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            top: 0,
+            left: 0,
+            backgroundColor: "black",
+            opacity: "0.3",
+          }}
+        ></div>
+        <div
+          className="card-img-overlay"
+          style={{
+            position: "relative",
+            padding: "270px 0px",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <h5
             className="card-title text-center fs-1"
-            style={{ margin: "200px 0px", color: "#000000" }}
+            style={{ color: "#ffffff", letterSpacing: "5px" }}
           >
-            EVERYTHING THAT GROWS IN OUR GARDEN
+            Secret Root
           </h5>
+          <h4 style={{ letterSpacing: "8px" }}>BRING NATURE INDOORS</h4>
+          <div className="btn shopbtn">Shop Now</div>
         </div>
       </div>
     </div>

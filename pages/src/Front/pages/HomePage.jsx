@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "../components/Header";
+import MainPageBody from "../components/MainPageBody";
 
 export default function HomePage() {
   return (
-    <div className="mx-5">
-      <Header />
+    <div>
+      <MainPageBody />
     </div>
   );
 }
