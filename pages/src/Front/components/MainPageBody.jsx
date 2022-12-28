@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import succulent from "../assets/images/succulent.webp";
 import plant from "../assets/images/plant.webp";
 import cactus from "../assets/images/cactus.webp";
@@ -6,7 +6,25 @@ import plantInOffice from "../assets/images/pexels-cup-of-couple-6177607.jpg";
 import plantPot from "../assets/images/pexels-ylanite-koppens-796620.jpg";
 import garden from "../assets/images/pexels-deeana-arts-2565222.jpg";
 import contactBackground from "../assets/images/pexels-lisa-fotios-1266302.jpg";
+import Link from "next/link";
+import ShopContext from "../context/ShopContext";
 export default function MainPageBody() {
+  const {
+    cactuses,
+    plants,
+    succulents,
+    allProducts,
+    setData,
+    setCollection,
+    data,
+    collection,
+  } = useContext(ShopContext);
+
+  useEffect(() => {
+    console.log(data);
+    console.log(collection);
+  }, [data]);
+
   return (
     <div className="mainPageBody d-flex flex-column">
       <div className="d-flex justify-content-between">
@@ -15,7 +33,14 @@ export default function MainPageBody() {
           <div className="card-img-overlay">
             <h5 className="card-title">Cactuses</h5>
             <p className="card-text">__</p>
-            <div className="btn shopbtn">Shop Collection</div>
+            <div
+              className="btn shopbtn"
+              onClick={(e) => {
+                setCollection(true), setData(cactuses);
+              }}
+            >
+              Shop Collection
+            </div>
           </div>
         </div>
         <div className="card text-bg-dark">
@@ -23,7 +48,14 @@ export default function MainPageBody() {
           <div className="card-img-overlay">
             <h5 className="card-title">Plants</h5>
             <p className="card-text">__</p>
-            <div className="btn shopbtn">Shop Collection</div>
+            <div
+              className="btn shopbtn"
+              onClick={(e) => {
+                setCollection(true), setData(plants);
+              }}
+            >
+              Shop Collection
+            </div>
           </div>
         </div>
         <div className="card text-bg-dark">
@@ -31,7 +63,14 @@ export default function MainPageBody() {
           <div className="card-img-overlay">
             <h5 className="card-title">Succulents</h5>
             <p className="card-text">__</p>
-            <div className="btn shopbtn">Shop Collection</div>
+            <div
+              className="btn shopbtn"
+              onClick={(e) => {
+                setCollection(true), setData(succulents);
+              }}
+            >
+              Shop Collection
+            </div>
           </div>
         </div>
       </div>
@@ -73,7 +112,14 @@ export default function MainPageBody() {
             >
               BUY ONLINE NOW & GET 10% OFF !
             </div>
-            <div className="btn shopbtn">Shop Now</div>
+            <div
+              className="btn shopbtn"
+              onClick={(e) => {
+                setData(allProducts), setCollection(true);
+              }}
+            >
+              Shop Now
+            </div>
           </div>
         </div>
       </div>
@@ -124,7 +170,7 @@ export default function MainPageBody() {
             <div className="row" style={{ textAlign: "initial" }}>
               <div className="col-6">
                 <div className="mb-3">
-                  <label for="firstname" className="form-label">
+                  <label htmlFor="firstname" className="form-label">
                     Firstname *
                   </label>
                   <input type="text" className="form-control" id="firstname" />
@@ -132,7 +178,7 @@ export default function MainPageBody() {
               </div>
               <div className="col-6">
                 <div className="mb-3">
-                  <label for="lastname" className="form-label">
+                  <label htmlFor="lastname" className="form-label">
                     Lastname *
                   </label>
                   <input type="text" className="form-control" id="lastname" />
@@ -141,8 +187,8 @@ export default function MainPageBody() {
             </div>
 
             <div className="mb-3" style={{ textAlign: "initial" }}>
-              <label for="email" className="form-label">
-                Email address
+              <label htmlFor="email" className="form-label">
+                Email address *
               </label>
               <input
                 type="email"
@@ -153,14 +199,14 @@ export default function MainPageBody() {
             </div>
 
             <div className="mb-3" style={{ textAlign: "initial" }}>
-              <label for="phone" className="form-label">
+              <label htmlFor="phone" className="form-label">
                 Phone
               </label>
               <input type="phone" className="form-control" id="phone" />
             </div>
 
             <div className="mb-3" style={{ textAlign: "initial" }}>
-              <label for="message" className="form-label">
+              <label htmlFor="message" className="form-label">
                 Message
               </label>
               <textarea

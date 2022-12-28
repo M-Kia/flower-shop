@@ -161,3 +161,17 @@
     }
   }
 }
+.collection{
+  margin: 0px;
+  margin-top: 50px;
+  & .card{
+    background-color: inherit;
+    border:none;
+    text-align: center;
+    align-items: center;
+    color: #a05841;
+    margin:0px auto;
+    margin-bottom: 50px;
+    width: 400px;
+  }
+}

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import background from "../assets/images/pexels-huy-phan-3076899.jpg";
 import planticon from "../assets/images/potted-plant.png";
+import ShopContext from "../context/ShopContext";
 export default function Header() {
   const [checkText, setCheckText] = useState(true);
 
@@ -11,7 +12,8 @@ export default function Header() {
 
     return () => clearInterval(Text);
   }, [checkText]);
-
+  const { collection, data, allProducts, setData, setCollection } =
+    useContext(ShopContext);
   return (
     <div className="Header">
       <div className="text-center mt-3 fs-2" style={{ color: "#a05841" }}>
@@ -21,12 +23,12 @@ export default function Header() {
         className="d-flex justify-content-between mt-3 px-4 py-2"
         style={{ backgroundColor: "#ffffff", color: "#a05841" }}
       >
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center" style={{ width: "30%" }}>
           <i className="bi bi-search me-2"></i>
           <input
             type="text"
             placeholder="Search..."
-            className="text-start"
+            className="text-start w-100"
             style={{ border: "none" }}
           />
         </div>
@@ -118,7 +120,7 @@ export default function Header() {
         style={{ border: "none", position: "relative" }}
       >
         <img
-          src={background.src}
+          src={!collection ? background.src : data.header}
           className="card-img"
           alt="..."
           style={{
@@ -159,7 +161,14 @@ export default function Header() {
             Secret Root
           </h5>
           <h4 style={{ letterSpacing: "8px" }}>BRING NATURE INDOORS</h4>
-          <div className="btn shopbtn">Shop Now</div>
+          <div
+            className="btn shopbtn"
+            onClick={(e) => {
+              setData(allProducts), setCollection(true);
+            }}
+          >
+            Shop Now
+          </div>
         </div>
       </div>
     </div>
