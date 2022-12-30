@@ -99,7 +99,7 @@ export default function SingleProduct() {
               }}
             >
               <i
-                class="bi bi-heart"
+                className="bi bi-heart"
                 style={{ color: "#a05841", fontSize: "22px" }}
               ></i>
             </a>
@@ -202,10 +202,10 @@ export default function SingleProduct() {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {allProducts.products.map((value) =>
+          {allProducts.products.map((value, index) =>
             value.relatedCode === singleProduct.relatedCode ? (
-              <SwiperSlide>
-                <SingleProductCard value={value} />
+              <SwiperSlide key={index}>
+                <SingleProductCard value={value} index={index} />
               </SwiperSlide>
             ) : (
               ""

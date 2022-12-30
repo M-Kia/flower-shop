@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import background from "../assets/images/pexels-huy-phan-3076899.jpg";
 import planticon from "../assets/images/potted-plant.png";
 import ShopContext from "../context/ShopContext";
+import SingleProductCard from "../components/SingleProductCard";
 export default function Header() {
   const [checkText, setCheckText] = useState(true);
 
@@ -180,7 +181,7 @@ export default function Header() {
       </div>
       <div
         className="offcanvas offcanvas-end"
-        tabindex="-1"
+        tabIndex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
       >
@@ -195,7 +196,11 @@ export default function Header() {
             aria-label="Close"
           ></button>
         </div>
-        <div className="offcanvas-body">...</div>
+        <div className="offcanvas-body">
+          {allProducts.products.map((value, index) =>
+            value.order ? <SingleProductCard value={value} index={index} /> : ""
+          )}
+        </div>
       </div>
     </div>
   );

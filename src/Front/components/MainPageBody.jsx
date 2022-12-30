@@ -33,14 +33,15 @@ export default function MainPageBody() {
           <div className="card-img-overlay">
             <h5 className="card-title">Cactuses</h5>
             <p className="card-text">__</p>
-            <div
+            <Link
+              href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
                 setCollection(true), setData(cactuses);
               }}
             >
               Shop Collection
-            </div>
+            </Link>
           </div>
         </div>
         <div className="card text-bg-dark">
