@@ -39,13 +39,13 @@ export default function Footer() {
         <div className="mb-3">
           <div className="d-flex align-items-end justify-content-center">
             <div>
-              <label htmlFor="exampleFormControlInput1" className="form-label">
+              <label htmlFor="email" className="form-label">
                 Enter your email here *
               </label>
               <input
                 type="email"
                 className="form-control"
-                id="exampleFormControlInput1"
+                id="email"
                 placeholder="name@example.com"
               />
             </div>

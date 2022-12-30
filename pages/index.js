@@ -5,6 +5,7 @@ import Footer from "./src/Front/layouts/Footer";
 import { ShopContextProvider } from "./src/Front/context/ShopContext";
 import Link from "next/link";
 import Collection from "./src/Front/pages/Collection";
+import SingleProduct from "./src/Front/pages/SingleProduct";
 export default function Home() {
   return (
     <div className="mx-5">
@@ -12,7 +13,8 @@ export default function Home() {
         <Header />
 
         {/* <HomePage /> */}
-        <Collection />
+        {/* <Collection /> */}
+        <SingleProduct />
         <Footer />
       </ShopContextProvider>
     </div>

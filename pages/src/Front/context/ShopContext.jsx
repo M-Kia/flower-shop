@@ -28,6 +28,7 @@ const ShopContext = React.createContext({
     products: [
       {
         name: "product name",
+        relatedCode: "",
         code: "",
         pictures: [{ value: "" }],
         price: "",
@@ -43,6 +44,7 @@ const ShopContext = React.createContext({
     products: [
       {
         name: "product name",
+        relatedCode: "",
         code: "",
         pictures: [{ value: "" }],
         price: "",
@@ -58,6 +60,7 @@ const ShopContext = React.createContext({
     products: [
       {
         name: "product name",
+        relatedCode: "",
         code: "",
         pictures: [{ value: "" }],
         price: "",
@@ -73,6 +76,7 @@ const ShopContext = React.createContext({
     products: [
       {
         name: "product name",
+        relatedCode: "",
         code: "",
         pictures: [{ value: "" }],
         price: "",
@@ -85,24 +89,63 @@ const ShopContext = React.createContext({
   },
   allProducts: "",
   collection: "",
+  singleProduct: {
+    name: "product name",
+    relatedCode: "",
+    code: "",
+    pictures: [{ value: "" }],
+    price: "",
+    stock: "",
+    order: false,
+    favorite: false,
+    productInfo: "",
+  },
   setData: (state) => {},
   setAllProducts: (state) => {},
   setCactuses: (state) => {},
   setPlants: (state) => {},
   setSucculents: (state) => {},
   setCollection: (state) => {},
+  setSingleProduct: (state) => {},
 });
 
 export default ShopContext;
 
 export const ShopContextProvider = ({ children }) => {
   const [collection, setCollection] = useState(false);
+  const [singleProduct, setSingleProduct] = useState(
+    //   {
+    //   name: "product name",
+    // relatedCode:"",
+    // code: "",
+    //   pictures: [{ value: "" }],
+    //   price: "",
+    //   stock: "",
+    //   order: false,
+    //   favorite: false,
+    //   productInfo: "",
+    // }
+    {
+      name: "product name",
+      relatedCode: 1,
+      code: 1,
+      pictures: [{ value: c1.src }, { value: c1.src }, { value: c1.src }],
+      price: 30,
+      discount: 10,
+      stock: 20,
+      order: false,
+      favorite: false,
+      productInfo:
+        "Mollit id reprehenderit incididunt nulla commodo non exercitation est anim ad dolore et adipisicing. Excepteur adipisicing ex ad anim esse aute culpa do. Esse enim tempor in laborum exercitation laborum sint occaecat cillum sint veniam voluptate laboris nulla. Officia ullamco ipsum in aliqua do fugiat ipsum.",
+    }
+  );
   const [cactuses, setCactuses] = useState({
     name: "cactuses",
     header: cactusCover.src,
     products: [
       {
         name: "product name",
+        relatedCode: 1,
         code: 1,
         pictures: [{ value: c1.src }],
         price: 30,
@@ -115,6 +158,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 2,
         pictures: [{ value: c2.src }],
         price: 30,
@@ -127,6 +171,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 3,
         pictures: [{ value: c3.src }],
         price: 30,
@@ -139,6 +184,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 4,
         pictures: [{ value: c4.src }],
         price: 30,
@@ -151,6 +197,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 5,
         pictures: [{ value: c5.src }],
         price: 30,
@@ -163,6 +210,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 6,
         pictures: [{ value: c6.src }],
         price: 30,
@@ -181,6 +229,7 @@ export const ShopContextProvider = ({ children }) => {
     products: [
       {
         name: "product name",
+        relatedCode: 2,
         code: 1,
         pictures: [{ value: p1.src }],
         price: 30,
@@ -193,6 +242,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 2,
         pictures: [{ value: p2.src }],
         price: 30,
@@ -205,6 +255,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 3,
         pictures: [{ value: p3.src }],
         price: 30,
@@ -217,6 +268,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 4,
         pictures: [{ value: p4.src }],
         price: 30,
@@ -229,6 +281,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 5,
         pictures: [{ value: p5.src }],
         price: 30,
@@ -241,6 +294,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 6,
         pictures: [{ value: p6.src }],
         price: 30,
@@ -259,6 +313,7 @@ export const ShopContextProvider = ({ children }) => {
     products: [
       {
         name: "product name",
+        relatedCode: 3,
         code: 1,
         pictures: [{ value: s1.src }],
         price: 30,
@@ -271,6 +326,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 2,
         pictures: [{ value: s2.src }],
         price: 30,
@@ -283,6 +339,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 3,
         pictures: [{ value: s3.src }],
         price: 30,
@@ -295,6 +352,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 4,
         pictures: [{ value: s4.src }],
         price: 30,
@@ -307,6 +365,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 5,
         pictures: [{ value: s5.src }],
         price: 30,
@@ -319,6 +378,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 6,
         pictures: [{ value: s6.src }],
         price: 30,
@@ -337,6 +397,7 @@ export const ShopContextProvider = ({ children }) => {
     products: [
       {
         name: "product name",
+        relatedCode: 1,
         code: 1,
         pictures: [{ value: c1.src }],
         price: 30,
@@ -349,6 +410,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 2,
         pictures: [{ value: c2.src }],
         price: 30,
@@ -361,6 +423,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 3,
         pictures: [{ value: c3.src }],
         price: 30,
@@ -373,6 +436,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 4,
         pictures: [{ value: c4.src }],
         price: 30,
@@ -385,6 +449,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 5,
         pictures: [{ value: c5.src }],
         price: 30,
@@ -397,6 +462,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 1,
         code: 6,
         pictures: [{ value: c6.src }],
         price: 30,
@@ -409,6 +475,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 7,
         pictures: [{ value: p1.src }],
         price: 30,
@@ -421,6 +488,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 8,
         pictures: [{ value: p2.src }],
         price: 30,
@@ -433,6 +501,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 9,
         pictures: [{ value: p3.src }],
         price: 30,
@@ -445,6 +514,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 10,
         pictures: [{ value: p4.src }],
         price: 30,
@@ -457,6 +527,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 11,
         pictures: [{ value: p5.src }],
         price: 30,
@@ -469,6 +540,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 2,
         code: 12,
         pictures: [{ value: p6.src }],
         price: 30,
@@ -482,6 +554,7 @@ export const ShopContextProvider = ({ children }) => {
 
       {
         name: "product name",
+        relatedCode: 3,
         code: 13,
         pictures: [{ value: s1.src }],
         price: 30,
@@ -494,6 +567,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 14,
         pictures: [{ value: s2.src }],
         price: 30,
@@ -506,6 +580,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 15,
         pictures: [{ value: s3.src }],
         price: 30,
@@ -518,6 +593,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 16,
         pictures: [{ value: s4.src }],
         price: 30,
@@ -530,6 +606,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 17,
         pictures: [{ value: s5.src }],
         price: 30,
@@ -542,6 +619,7 @@ export const ShopContextProvider = ({ children }) => {
       },
       {
         name: "product name",
+        relatedCode: 3,
         code: 18,
         pictures: [{ value: s6.src }],
         price: 30,
@@ -560,6 +638,7 @@ export const ShopContextProvider = ({ children }) => {
     products: [
       {
         name: "product name",
+        relatedCode: "",
         code: "",
         pictures: [{ value: "" }],
         price: "",
@@ -579,12 +658,14 @@ export const ShopContextProvider = ({ children }) => {
         data,
         collection,
         allProducts,
+        singleProduct,
         setCactuses,
         setPlants,
         setSucculents,
         setData,
         setCollection,
         setAllProducts,
+        setSingleProduct,
       }}
     >
       {children}

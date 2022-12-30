@@ -35,7 +35,7 @@ export default function Header() {
 
         <div className="d-flex">
           <div
-            className="d-flex align-items-center"
+            className="d-flex align-items-center justify-content-end"
             style={{ cursor: "pointer" }}
           >
             <i
@@ -44,8 +44,15 @@ export default function Header() {
             ></i>
             <div>Log in</div>
           </div>
+
           <div className="ms-5" style={{ cursor: "pointer" }}>
-            <i className="bi bi-bag" style={{ fontSize: "1.5rem" }}></i>
+            <i
+              className="bi bi-bag"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight"
+              style={{ fontSize: "1.5rem" }}
+            ></i>
           </div>
         </div>
       </div>
@@ -170,6 +177,25 @@ export default function Header() {
             Shop Now
           </div>
         </div>
+      </div>
+      <div
+        className="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasRightLabel">
+            Offcanvas right
+          </h5>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div className="offcanvas-body">...</div>
       </div>
     </div>
   );
