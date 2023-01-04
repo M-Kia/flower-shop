@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ShopContext from "../context/ShopContext";
-import SingleProductCard from "../components/SingleProductCard";
+import SingleProductCard from "./SingleProductCard";
 export default function Collection() {
   const { data, setData, setSingleProduct } = useContext(ShopContext);
   // console.log(data);
