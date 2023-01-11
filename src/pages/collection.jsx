@@ -1,3 +1,3 @@
-import Collection from "../Front/components/Collection";
+import Collection from "../components/Collection";
 
 export default Collection;
