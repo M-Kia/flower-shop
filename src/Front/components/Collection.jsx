@@ -16,7 +16,15 @@ export default function Collection() {
       ) : (
         ""
       )}
-      <div className="d-flex flex-wrap">
+      <div
+        // className="d-flex flex-wrap"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, 400px)",
+          gridGap: "1rem",
+          justifyContent: "space-between",
+        }}
+      >
         {type === 0
           ? allProducts.products.map((value, index) => (
               <SingleProductCard value={value} index={index} />

@@ -6,10 +6,11 @@ import { useEffect } from "react";
 import Layout from "../Front/layouts/Layout";
 import { ShopContextProvider } from "../Front/context/ShopContext";
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, data }) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.min.js");
   }, []);
+
   return (
     <ShopContextProvider>
       <Layout>
