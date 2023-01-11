@@ -43,6 +43,7 @@
       box-shadow: 0 0 0 0.25rem #a058414d;
     }
   }
+  
 }
 .Footer {
   text-align: center;
@@ -175,6 +176,10 @@
     margin-bottom: 50px;
     width: 400px;
   }
+  & a{
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .singleProduct {
@@ -229,5 +234,9 @@
         }
       }
     }
+  }
+   & a{
+    text-decoration: none;
+    color: inherit;
   }
 }

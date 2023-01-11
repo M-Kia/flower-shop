@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import background from "../assets/images/pexels-huy-phan-3076899.jpg";
-import planticon from "../assets/images/potted-plant.png";
 import ShopContext from "../context/ShopContext";
 import SingleProductCard from "../components/SingleProductCard";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 export default function Header() {
   const [checkText, setCheckText] = useState(true);
-
+  let count = 0;
+  const router = useRouter();
   useEffect(() => {
     const Text = setTimeout(() => {
       setCheckText((checkText) => !checkText);
@@ -13,8 +16,12 @@ export default function Header() {
 
     return () => clearInterval(Text);
   }, [checkText]);
-  const { collection, data, allProducts, setData, setCollection } =
+
+  const { collection, allProducts, setCollection, type } =
     useContext(ShopContext);
+
+  allProducts.products.map((value) => (value.order ? count++ : ""));
+
   return (
     <div className="Header">
       <div className="text-center mt-3 fs-2" style={{ color: "#a05841" }}>
@@ -60,9 +67,9 @@ export default function Header() {
 
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" href="/">
             Secret Root
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -78,8 +85,8 @@ export default function Header() {
             <div className="navbar-nav">
               <li className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
                   href="#"
+                  className="nav-link dropdown-toggle"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -88,19 +95,37 @@ export default function Header() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
-                      plants
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
+                    <Link
+                      className="dropdown-item"
+                      href="/collection"
+                      onClick={(e) => {
+                        setCollection(true), setType(1);
+                      }}
+                    >
                       cactus
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link
+                      className="dropdown-item"
+                      href="/collection"
+                      onClick={(e) => {
+                        setCollection(true), setType(2);
+                      }}
+                    >
+                      plants
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      href="/collection"
+                      onClick={(e) => {
+                        setCollection(true), setType(3);
+                      }}
+                    >
                       succulent
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -128,7 +153,17 @@ export default function Header() {
         style={{ border: "none", position: "relative" }}
       >
         <img
-          src={!collection ? background.src : data.header}
+          src={
+            router.pathname === "/"
+              ? background.src
+              : router.pathname === "/collection" && type === 0
+              ? allProducts.headerAll
+              : router.pathname === "/collection" && type === 1
+              ? allProducts.headerCactus
+              : router.pathname === "/collection" && type === 2
+              ? allProducts.headerPlant
+              : allProducts.headerSucculent
+          }
           className="card-img"
           alt="..."
           style={{
@@ -169,26 +204,32 @@ export default function Header() {
             Secret Root
           </h5>
           <h4 style={{ letterSpacing: "8px" }}>BRING NATURE INDOORS</h4>
-          <div
-            className="btn shopbtn"
-            onClick={(e) => {
-              setData(allProducts), setCollection(true);
-            }}
-          >
-            Shop Now
-          </div>
+          {collection ? (
+            ""
+          ) : (
+            <Link
+              href="./collection"
+              className="btn shopbtn"
+              onClick={(e) => {
+                setCollection(true);
+              }}
+            >
+              Shop Now
+            </Link>
+          )}
         </div>
       </div>
       <div
-        className="offcanvas offcanvas-end"
+        className="offcanvas offcanvas-end singleProduct"
         tabIndex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
+        style={{ width: "15%", textAlign: "center" }}
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasRightLabel">
-            Offcanvas right
-          </h5>
+          <h2 className="offcanvas-title" id="offcanvasRightLabel">
+            Cart
+          </h2>
           <button
             type="button"
             className="btn-close"
@@ -197,8 +238,16 @@ export default function Header() {
           ></button>
         </div>
         <div className="offcanvas-body">
-          {allProducts.products.map((value, index) =>
-            value.order ? <SingleProductCard value={value} index={index} /> : ""
+          {count === 0 ? (
+            <h4 className="mt-4">Cart is empty</h4>
+          ) : (
+            allProducts.products.map((value, index) =>
+              value.order ? (
+                <SingleProductCard value={value} index={index} />
+              ) : (
+                ""
+              )
+            )
           )}
         </div>
       </div>

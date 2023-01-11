@@ -2,25 +2,32 @@ import React, { useContext } from "react";
 import ShopContext from "../context/ShopContext";
 import SingleProductCard from "./SingleProductCard";
 export default function Collection() {
-  const { data, setData, setSingleProduct } = useContext(ShopContext);
-  // console.log(data);
+  const { type, allProducts } = useContext(ShopContext);
   return (
     <div className="collection text-center">
-      {data.name === "allProducts" ? (
+      {type === 0 ? (
         <div className="fs-1 mb-4">SHOP ALL</div>
-      ) : data.name === "cactuses" ? (
+      ) : type === 1 ? (
         <div className="fs-1 mb-4">CACTUSES</div>
-      ) : data.name === "plants" ? (
+      ) : type === 2 ? (
         <div className="fs-1 mb-4">PLANTS</div>
-      ) : data.name === "succulents" ? (
+      ) : type === 3 ? (
         <div className="fs-1 mb-4">SUCCULENTS</div>
       ) : (
         ""
       )}
       <div className="d-flex flex-wrap">
-        {data.products.map((value, index) => {
-          return <SingleProductCard value={value} index={index} />;
-        })}
+        {type === 0
+          ? allProducts.products.map((value, index) => (
+              <SingleProductCard value={value} index={index} />
+            ))
+          : allProducts.products.map((value, index) =>
+              value.relatedCode === type ? (
+                <SingleProductCard value={value} index={index} />
+              ) : (
+                ""
+              )
+            )}
       </div>
     </div>
   );

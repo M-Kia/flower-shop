@@ -9,16 +9,8 @@ import contactBackground from "../assets/images/pexels-lisa-fotios-1266302.jpg";
 import Link from "next/link";
 import ShopContext from "../context/ShopContext";
 export default function MainPageBody() {
-  const {
-    cactuses,
-    plants,
-    succulents,
-    allProducts,
-    setData,
-    setCollection,
-    data,
-    collection,
-  } = useContext(ShopContext);
+  const { data, collection, allProducts, setData, setCollection, setType } =
+    useContext(ShopContext);
 
   useEffect(() => {
     console.log(data);
@@ -37,7 +29,7 @@ export default function MainPageBody() {
               href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
-                setCollection(true), setData(cactuses);
+                setCollection(true), setType(1);
               }}
             >
               Shop Collection
@@ -49,14 +41,15 @@ export default function MainPageBody() {
           <div className="card-img-overlay">
             <h5 className="card-title">Plants</h5>
             <p className="card-text">__</p>
-            <div
+            <Link
+              href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
-                setCollection(true), setData(plants);
+                setCollection(true), setType(2);
               }}
             >
               Shop Collection
-            </div>
+            </Link>
           </div>
         </div>
         <div className="card text-bg-dark">
@@ -64,14 +57,15 @@ export default function MainPageBody() {
           <div className="card-img-overlay">
             <h5 className="card-title">Succulents</h5>
             <p className="card-text">__</p>
-            <div
+            <Link
+              href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
-                setCollection(true), setData(succulents);
+                setCollection(true), setType(3);
               }}
             >
               Shop Collection
-            </div>
+            </Link>
           </div>
         </div>
       </div>
