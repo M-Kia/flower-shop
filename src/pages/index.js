@@ -19,10 +19,6 @@ import s3 from "../Front/assets/images/s3.webp";
 import s4 from "../Front/assets/images/s4.webp";
 import s5 from "../Front/assets/images/s5.webp";
 import s6 from "../Front/assets/images/s6.webp";
-import cactusCover from "../Front/assets/images/cactusCover.jpg";
-import plantCover from "../Front/assets/images/plantCover.jpg";
-import succulentCover from "../Front/assets/images/succulentCover.jpg";
-import allCover from "../Front/assets/images/allCover.jpg";
 
 export default function Home({ data }) {
   console.log(data);
