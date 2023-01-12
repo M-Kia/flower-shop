@@ -7,14 +7,6 @@ import { BaseModel } from "./BaseModel";
 })
 export class Files extends BaseModel {
   @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
-  @Column({
     type: DataType.STRING,
     allowNull: false,
   })

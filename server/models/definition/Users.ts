@@ -9,14 +9,6 @@ import type { StatusType } from "../../types/dataTypes";
 })
 export class Users extends BaseModel {
   @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
-  @Column({
     type: DataType.STRING,
     allowNull: false,
     field: "first_name",
@@ -41,7 +33,7 @@ export class Users extends BaseModel {
     type: DataType.STRING,
     defaultValue: "",
   })
-  public email: string;
+  public email!: string;
 
   @Column({
     type: DataType.STRING,
@@ -60,9 +52,8 @@ export class Users extends BaseModel {
         return "active";
       case 1:
         return "inactive";
-      case -1:
+      default: // -1
         return "deleted";
-      default:
     }
   }
 
@@ -74,10 +65,8 @@ export class Users extends BaseModel {
       case "inactive":
         this.setDataValue("status", 1);
         break;
-      case "deleted":
+      default: // "deleted"
         this.setDataValue("status", -1);
-        break;
-      default:
     }
   }
 }

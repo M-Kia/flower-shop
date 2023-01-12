@@ -11,20 +11,12 @@ import { BaseModel } from "./BaseModel";
 import { Orders } from "./Orders";
 import { Products } from "./Products";
 
-import type { CollectionsType, StatusType } from "../../types/dataTypes";
+import type { CollectionsType, } from "../../types/dataTypes";
 
 @Table({
   tableName: "order_items",
 })
 export class OrderItems extends BaseModel {
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
   @ForeignKey(() => Orders)
   @Column({
     type: DataType.INTEGER,
@@ -34,7 +26,7 @@ export class OrderItems extends BaseModel {
   public orderId!: number;
 
   @BelongsTo(() => Orders)
-  public order: Orders;
+  public order!: Orders;
 
   @ForeignKey(() => Products)
   @Column({
@@ -45,7 +37,7 @@ export class OrderItems extends BaseModel {
   public productId!: number;
 
   @BelongsTo(() => Products)
-  public product: Products;
+  public product!: Products;
 
   @Column({
     type: DataType.INTEGER,
@@ -58,9 +50,8 @@ export class OrderItems extends BaseModel {
         return "Cacti";
       case 1:
         return "Plants";
-      case 2:
+      default: // 2
         return "Succulents";
-      default:
     }
   }
 
@@ -72,10 +63,8 @@ export class OrderItems extends BaseModel {
       case "Plants":
         this.setDataValue("collection", 1);
         break;
-      case "Succulents":
+      default: // Succulents
         this.setDataValue("collection", 2);
-        break;
-      default:
     }
   }
 
@@ -89,7 +78,7 @@ export class OrderItems extends BaseModel {
     type: DataType.STRING,
     defaultValue: "",
   })
-  public description: string;
+  public description!: string;
 
   @Column({
     type: DataType.INTEGER,
@@ -101,5 +90,5 @@ export class OrderItems extends BaseModel {
     type: DataType.INTEGER,
     defaultValue: 0,
   })
-  public discount: number;
+  public discount!: number;
 }

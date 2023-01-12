@@ -15,14 +15,6 @@ import { Chats } from "./Chats";
   tableName: "messages",
 })
 export class Messages extends BaseModel {
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
   @ForeignKey(() => Users)
   @Column({
     type: DataType.INTEGER,
@@ -32,7 +24,7 @@ export class Messages extends BaseModel {
   public userId!: number;
 
   @BelongsTo(() => Users)
-  public user: Users;
+  public user!: Users;
 
   @ForeignKey(() => Chats)
   @Column({
@@ -43,7 +35,7 @@ export class Messages extends BaseModel {
   public chatId!: number;
 
   @BelongsTo(() => Chats)
-  public chat: Chats;
+  public chat!: Chats;
 
   @Column({
     type: DataType.STRING,
@@ -64,9 +56,8 @@ export class Messages extends BaseModel {
         return "received";
       case 2:
         return "seen";
-      case -1:
+      default: // -1
         return "deleted";
-      default:
     }
   }
 
@@ -81,10 +72,8 @@ export class Messages extends BaseModel {
       case "seen":
         this.setDataValue("status", 2);
         break;
-      case "deleted":
+      default: // deleted
         this.setDataValue("status", -1);
-        break;
-      default:
     }
   }
 }

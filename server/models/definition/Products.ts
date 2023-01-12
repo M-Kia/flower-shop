@@ -1,4 +1,4 @@
-import { Table, Column, DataType, ForeignKey } from "sequelize-typescript";
+import { Table, Column, DataType } from "sequelize-typescript";
 
 import { BaseModel } from "./BaseModel";
 
@@ -11,14 +11,6 @@ export class Products extends BaseModel {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
     comment: "0 => Cacti, 1 => Plants, 2 => Succulents",
   })
   get collection(): CollectionsType {
@@ -27,9 +19,8 @@ export class Products extends BaseModel {
         return "Cacti";
       case 1:
         return "Plants";
-      case 2:
+      default: // 2
         return "Succulents";
-      default:
     }
   }
 
@@ -41,10 +32,8 @@ export class Products extends BaseModel {
       case "Plants":
         this.setDataValue("collection", 1);
         break;
-      case "Succulents":
+      default: // Succulents
         this.setDataValue("collection", 2);
-        break;
-      default:
     }
   }
 
@@ -58,7 +47,7 @@ export class Products extends BaseModel {
     type: DataType.STRING,
     defaultValue: "",
   })
-  public description: string;
+  public description!: string;
 
   @Column({
     type: DataType.INTEGER,
@@ -70,14 +59,14 @@ export class Products extends BaseModel {
     type: DataType.INTEGER,
     defaultValue: 0,
   })
-  public discount: number;
+  public discount!: number;
 
   @Column({
     type: DataType.INTEGER,
     field: "inventory_count",
     defaultValue: 0,
   })
-  public inventoryCount: number;
+  public inventoryCount!: number;
 
   @Column({
     type: DataType.INTEGER,
@@ -90,9 +79,8 @@ export class Products extends BaseModel {
         return "active";
       case 1:
         return "inactive";
-      case -1:
+      default: // -1
         return "deleted";
-      default:
     }
   }
 
@@ -104,10 +92,8 @@ export class Products extends BaseModel {
       case "inactive":
         this.setDataValue("status", 1);
         break;
-      case "deleted":
+      default: // "deleted"
         this.setDataValue("status", -1);
-        break;
-      default:
     }
   }
 }

@@ -17,14 +17,6 @@ import type { StatusType } from "../../types/dataTypes";
   tableName: "cart_items",
 })
 export class CartItems extends BaseModel {
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
   @ForeignKey(() => Users)
   @Column({
     type: DataType.INTEGER,
@@ -58,9 +50,8 @@ export class CartItems extends BaseModel {
         return "active";
       case 1:
         return "inactive";
-      case -1:
+      default: // -1
         return "deleted";
-      default:
     }
   }
 
@@ -72,10 +63,8 @@ export class CartItems extends BaseModel {
       case "inactive":
         this.setDataValue("status", 1);
         break;
-      case "deleted":
+      default: // "deleted"
         this.setDataValue("status", -1);
-        break;
-      default:
     }
   }
 }

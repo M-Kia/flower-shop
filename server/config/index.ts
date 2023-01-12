@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-dotenv.config({ path: "./config.env" });
+dotenv.config();
 
 export default {
   DATABASE_HOST: process.env.DATABASE_HOST,

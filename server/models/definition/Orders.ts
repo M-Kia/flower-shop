@@ -17,24 +17,16 @@ import type { OrderStatusType } from "../../types/dataTypes";
   tableName: "orders",
 })
 export class Orders extends BaseModel {
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
   @ForeignKey(() => Users)
   @Column({
     type: DataType.INTEGER,
     field: "user_id",
     allowNull: false,
   })
-  public userId: number;
+  public userId!: number;
 
   @BelongsTo(() => Users)
-  public user: Users;
+  public user!: Users;
 
   @ForeignKey(() => UserAddresses)
   @Column({
@@ -42,10 +34,10 @@ export class Orders extends BaseModel {
     field: "user_address_id",
     allowNull: false,
   })
-  public userAddressId: number;
+  public userAddressId!: number;
 
   @BelongsTo(() => UserAddresses)
-  public userAddress: UserAddresses;
+  public userAddress!: UserAddresses;
 
   @Column({
     type: DataType.INTEGER,
@@ -63,9 +55,8 @@ export class Orders extends BaseModel {
         return "sending";
       case 3:
         return "completed";
-      case -1:
+      default: // -1
         return "cancelled";
-      default:
     }
   }
 
@@ -83,10 +74,8 @@ export class Orders extends BaseModel {
       case "completed":
         this.setDataValue("status", 3);
         break;
-      case "cancelled":
+      default: //cancelled
         this.setDataValue("status", -1);
-        break;
-      default:
     }
   }
 }

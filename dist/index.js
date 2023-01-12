@@ -1,8 +1,8 @@
-import { createServer } from "http";
-import { parse } from "url";
-import next from "next";
+const { createServer } = require("http");
+const { parse } = require("url");
+const next = require("next");
 
-import { initDB } from "./server/models";
+const { initDB } = require("./models");
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const dev = process.env.NODE_ENV !== "production";
@@ -21,7 +21,7 @@ async function bootstrap() {
 
   app.prepare().then(() => {
     createServer((req, res) => {
-      const parsedUrl = parse(req.url, true);
+      const parsedUrl = parse(req.url || "", true);
       handle(req, res, parsedUrl);
     }).listen(port);
 

@@ -15,14 +15,6 @@ import { Products } from "./Products";
   tableName: "favorite_products",
 })
 export class FavoriteProducts extends BaseModel {
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  public id!: number;
-
   @ForeignKey(() => Users)
   @Column({
     type: DataType.INTEGER,
@@ -32,7 +24,7 @@ export class FavoriteProducts extends BaseModel {
   public userId!: number;
 
   @BelongsTo(() => Users)
-  public user: Users;
+  public user!: Users;
 
   @ForeignKey(() => Products)
   @Column({
@@ -43,5 +35,5 @@ export class FavoriteProducts extends BaseModel {
   public productId!: number;
 
   @BelongsTo(() => Products)
-  public product: Products;
+  public product!: Products;
 }
