@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon",
+    "debugging": "cross-env NODE_ENV=development nodemon -e js,css,jsx, scss",
+    "dev": "nodemon -e js,css,jsx, scss",
     "build": "next build && tsc --project tsconfig.server.json",
     "tsc": "tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node ./dist/index.js"

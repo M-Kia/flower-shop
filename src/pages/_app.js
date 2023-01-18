@@ -6,15 +6,25 @@ import { useEffect } from "react";
 import Layout from "../layouts/Layout";
 import { ShopContextProvider } from "../context/ShopContext";
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, data }) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.min.js");
   }, []);
   return (
-    <ShopContextProvider>
+    <ShopContextProvider data={data}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </ShopContextProvider>
   );
+}
+
+export function getServerSideProps() {
+  console.log("HERE");
+
+  return {
+    props: {
+      data: ["Hello", "World", "!"],
+    },
+  };
 }

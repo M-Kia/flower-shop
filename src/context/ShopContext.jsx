@@ -111,7 +111,7 @@ const ShopContext = React.createContext({
 
 export default ShopContext;
 
-export const ShopContextProvider = ({ children }) => {
+export const ShopContextProvider = ({ children, data: kData }) => {
   const [collection, setCollection] = useState(false);
   const [singleProduct, setSingleProduct] = useState(
     //   {
@@ -649,6 +649,9 @@ export const ShopContextProvider = ({ children }) => {
       },
     ],
   });
+
+  console.log("HERE");
+  console.log(kData);
   return (
     <ShopContext.Provider
       value={{

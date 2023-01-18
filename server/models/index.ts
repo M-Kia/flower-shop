@@ -19,6 +19,7 @@ const sequelize = new Sequelize({
   dialect: "mysql",
   username: config.DATABASE_USER,
   password: config.DATABASE_PASSWORD,
+  logging: config.NODE_ENV !== "production",
 });
 
 sequelize.addModels([
