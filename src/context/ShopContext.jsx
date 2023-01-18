@@ -111,7 +111,7 @@ const ShopContext = React.createContext({
 
 export default ShopContext;
 
-export const ShopContextProvider = ({ children }) => {
+export const ShopContextProvider = ({ children, data: kData }) => {
   const [collection, setCollection] = useState(false);
   //type:0 => all , 1 => cactus , 2 => plants , 3 => succulents
   const [type, setType] = useState(0);
@@ -636,23 +636,26 @@ export const ShopContextProvider = ({ children }) => {
       },
     ],
   });
-  // const [data, setData] = useState({
-  //   name: "",
-  //   header: "",
-  //   products: [
-  //     {
-  //       name: "product name",
-  //       relatedCode: "",
-  //       code: "",
-  //       pictures: [{ value: "" }],
-  //       price: "",
-  //       stock: "",
-  //       order: false,
-  //       favorite: false,
-  //       productInfo: "",
-  //     },
-  //   ],
-  // });
+  const [data, setData] = useState({
+    name: "",
+    header: "",
+    products: [
+      {
+        name: "product name",
+        relatedCode: "",
+        code: "",
+        pictures: [{ value: "" }],
+        price: "",
+        stock: "",
+        order: false,
+        favorite: false,
+        productInfo: "",
+      },
+    ],
+  });
+
+  console.log("HERE");
+  console.log(kData);
   return (
     <ShopContext.Provider
       value={{

@@ -1,8 +1,8 @@
-import Collection from "../Front/components/Collection";
-import cactusCover from "../Front/assets/images/cactusCover.jpg";
-import plantCover from "../Front/assets/images/plantCover.jpg";
-import succulentCover from "../Front/assets/images/succulentCover.jpg";
-import allCover from "../Front/assets/images/allCover.jpg";
+import Collection from "../components/Collection";
+import cactusCover from "../assets/images/cactusCover.jpg";
+import plantCover from "../assets/images/plantCover.jpg";
+import succulentCover from "../assets/images/succulentCover.jpg";
+import allCover from "../assets/images/allCover.jpg";
 
 export default function CollectionPage() {
   return <Collection />;

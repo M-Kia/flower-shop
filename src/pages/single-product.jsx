@@ -1,5 +1,5 @@
-import SingleProduct from "../Front/components/SingleProduct";
-import c1 from "../Front/assets/images/c1.webp";
+import SingleProduct from "../components/SingleProduct";
+import c1 from "../assets/images/c1.webp";
 
 export default function SingleProductPage() {
   return <SingleProduct />;

@@ -1,24 +1,24 @@
 import React from "react";
-import HomePage from "../Front/components/HomePage";
+import HomePage from "../components/HomePage";
 
-import c1 from "../Front/assets/images/c1.webp";
-import c2 from "../Front/assets/images/c2.webp";
-import c3 from "../Front/assets/images/c3.webp";
-import c4 from "../Front/assets/images/c4.webp";
-import c5 from "../Front/assets/images/c5.webp";
-import c6 from "../Front/assets/images/c6.webp";
-import p1 from "../Front/assets/images/p1.webp";
-import p2 from "../Front/assets/images/p2.webp";
-import p3 from "../Front/assets/images/p3.webp";
-import p4 from "../Front/assets/images/p4.webp";
-import p5 from "../Front/assets/images/p5.webp";
-import p6 from "../Front/assets/images/p6.webp";
-import s1 from "../Front/assets/images/s1.webp";
-import s2 from "../Front/assets/images/s2.webp";
-import s3 from "../Front/assets/images/s3.webp";
-import s4 from "../Front/assets/images/s4.webp";
-import s5 from "../Front/assets/images/s5.webp";
-import s6 from "../Front/assets/images/s6.webp";
+import c1 from "../assets/images/c1.webp";
+import c2 from "../assets/images/c2.webp";
+import c3 from "../assets/images/c3.webp";
+import c4 from "../assets/images/c4.webp";
+import c5 from "../assets/images/c5.webp";
+import c6 from "../assets/images/c6.webp";
+import p1 from "../assets/images/p1.webp";
+import p2 from "../assets/images/p2.webp";
+import p3 from "../assets/images/p3.webp";
+import p4 from "../assets/images/p4.webp";
+import p5 from "../assets/images/p5.webp";
+import p6 from "../assets/images/p6.webp";
+import s1 from "../assets/images/s1.webp";
+import s2 from "../assets/images/s2.webp";
+import s3 from "../assets/images/s3.webp";
+import s4 from "../assets/images/s4.webp";
+import s5 from "../assets/images/s5.webp";
+import s6 from "../assets/images/s6.webp";
 
 export default function Home({ data }) {
   console.log(data);
