@@ -45,16 +45,11 @@ export default function Header() {
         </div>
 
         <div className="d-flex">
-          <div
-            className="d-flex align-items-center justify-content-end"
-            style={{ cursor: "pointer" }}
-            onClick={() => setModalShow(true)}
-          >
-            <i
-              className="bi bi-person-circle me-2"
-              style={{ fontSize: "1.5rem" }}
-            ></i>
-            <div>Log in</div>
+          <div>
+            <Login
+              className="d-flex align-items-center justify-content-end"
+              style={{ cursor: "pointer" }}
+            />
           </div>
 
           <div className="ms-5" style={{ cursor: "pointer" }}>
@@ -258,7 +253,6 @@ export default function Header() {
           )}
         </div>
       </div>
-      <Login show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 }
