@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -8,9 +8,15 @@ import { Pagination } from "swiper";
 
 import ShopContext from "../context/ShopContext";
 import SingleProductCard from "../components/SingleProductCard";
+
 export default function SingleProduct() {
   const { singleProduct, allProducts, setAllProducts, setSingleProduct } =
     useContext(ShopContext);
+
+  useEffect(() => {
+    console.log(singleProduct);
+  }, [singleProduct]);
+
   return (
     <div
       className="d-flex flex-column singleProduct align-items-center"
@@ -26,7 +32,7 @@ export default function SingleProduct() {
               <a href="#">Library</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Data
+              {singleProduct.name}
             </li>
           </ol>
         </nav>
@@ -78,6 +84,7 @@ export default function SingleProduct() {
               type="number"
               defaultValue={1}
               max={singleProduct.stock}
+              min={1}
               className="my-2"
             />
           </div>
@@ -90,14 +97,21 @@ export default function SingleProduct() {
                   style={{ marginTop: "0px", width: "100%" }}
                   onClick={(e) => {
                     //change value order to true
-                    setSingleProduct((prev) => ({
+                    setAllProducts((prev) => ({
                       ...prev,
-                      order: !order,
+                      products: prev.products.map((v) => {
+                        if (v.code === singleProduct.code) {
+                          v.order = false;
+                        }
+                        return v;
+                      }),
                     }));
+
+                    setSingleProduct({
+                      ...singleProduct,
+                      order: false,
+                    });
                   }}
-                  // data-bs-toggle="offcanvas"
-                  // data-bs-target="#offcanvasRight"
-                  // aria-controls="offcanvasRight"
                 >
                   Remove from Cart
                 </div>
@@ -107,10 +121,20 @@ export default function SingleProduct() {
                   style={{ marginTop: "0px", width: "100%" }}
                   onClick={(e) => {
                     //change value order to true
-                    setSingleProduct((prev) => ({
+                    setAllProducts((prev) => ({
                       ...prev,
-                      order: !order,
+                      products: prev.products.map((v) => {
+                        if (v.code === singleProduct.code) {
+                          v.order = true;
+                        }
+                        return v;
+                      }),
                     }));
+
+                    setSingleProduct({
+                      ...singleProduct,
+                      order: true,
+                    });
                   }}
                   data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasRight"
@@ -119,8 +143,7 @@ export default function SingleProduct() {
                   Add to Cart
                 </div>
               )}
-              <a
-                href="#"
+              <div
                 className="btn shopbtn"
                 style={{
                   margin: "0px",
@@ -129,14 +152,33 @@ export default function SingleProduct() {
                   padding: "6px 12px",
                 }}
                 onClick={(e) => {
-                  //change value order to true
+                  setAllProducts((prev) => ({
+                    ...prev,
+                    products: prev.products.map((v) => {
+                      if (v.code === singleProduct.code) {
+                        v.favorite = !v.favorite;
+                      }
+                      return v;
+                    }),
+                  }));
+                  setSingleProduct({
+                    ...singleProduct,
+                    favorite: !singleProduct.favorite,
+                  });
                 }}
               >
-                <i
-                  className="bi bi-heart"
-                  style={{ color: "#a05841", fontSize: "22px" }}
-                ></i>
-              </a>
+                {singleProduct.favorite ? (
+                  <i
+                    class="bi bi-heart-fill"
+                    style={{ color: "#a05841", fontSize: "22px" }}
+                  ></i>
+                ) : (
+                  <i
+                    className="bi bi-heart"
+                    style={{ color: "#a05841", fontSize: "22px" }}
+                  ></i>
+                )}
+              </div>
             </div>
             <div className="btn shopbtn buy my-2">Buy Now</div>
           </div>

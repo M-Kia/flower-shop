@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import ShopContext from "../context/ShopContext";
 import SingleProductCard from "../components/SingleProductCard";
-export default function MiniHeader() {
-  const [checkText, setCheckText] = useState(true);
+import Link from "next/link";
 
+export default function MiniHeader() {
+  const { allProducts, setCollection, setType } = useContext(ShopContext);
+  const [checkText, setCheckText] = useState(true);
+  let count = 0;
+  allProducts.products.map((value) => (value.order ? count++ : ""));
   useEffect(() => {
     const Text = setTimeout(() => {
       setCheckText((checkText) => !checkText);
@@ -11,7 +15,6 @@ export default function MiniHeader() {
 
     return () => clearInterval(Text);
   }, [checkText]);
-  const { allProducts } = useContext(ShopContext);
   return (
     <div className="Header">
       <div className="text-center mt-3 fs-2" style={{ color: "#a05841" }}>
@@ -57,9 +60,9 @@ export default function MiniHeader() {
 
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" href="/">
             Secret Root
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -85,25 +88,43 @@ export default function MiniHeader() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
-                      plants
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
+                    <Link
+                      className="dropdown-item"
+                      href="/collection"
+                      onClick={(e) => {
+                        setCollection(true);
+                        setType(1);
+                      }}
+                    >
                       cactus
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link
+                      className="dropdown-item"
+                      href="/collection"
+                      onClick={(e) => {
+                        setCollection(true);
+                        setType(2);
+                      }}
+                    >
+                      plants
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      href="/collection"
+                      onClick={(e) => {
+                        setCollection(true);
+                        setType(3);
+                      }}
+                    >
                       succulent
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
-              <a className="nav-link" href="#">
-                about
-              </a>
               <a className="nav-link" href="#">
                 FAQ
               </a>
@@ -121,15 +142,16 @@ export default function MiniHeader() {
       </nav>
 
       <div
-        className="offcanvas offcanvas-end"
+        className="offcanvas offcanvas-end singleProduct"
         tabIndex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
+        style={{ width: "15%", textAlign: "center" }}
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasRightLabel">
-            Offcanvas right
-          </h5>
+          <h2 className="offcanvas-title" id="offcanvasRightLabel">
+            Cart
+          </h2>
           <button
             type="button"
             className="btn-close"
@@ -138,8 +160,16 @@ export default function MiniHeader() {
           ></button>
         </div>
         <div className="offcanvas-body">
-          {allProducts.products.map((value, index) =>
-            value.order ? <SingleProductCard value={value} index={index} /> : ""
+          {count === 0 ? (
+            <h4 className="mt-4">Cart is empty</h4>
+          ) : (
+            allProducts.products.map((value, index) =>
+              value.order ? (
+                <SingleProductCard value={value} index={index} key={index} />
+              ) : (
+                ""
+              )
+            )
           )}
         </div>
       </div>

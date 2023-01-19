@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ShopContext from "../context/ShopContext";
 import Link from "next/link";
 
 export default function SingleProductCard({ value, index }) {
   const { setSingleProduct, setAllProducts } = useContext(ShopContext);
+
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
 
   return (
     <div className="card" key={index}>
@@ -48,15 +52,12 @@ export default function SingleProductCard({ value, index }) {
               ...prev,
               products: prev.products.map((v) => {
                 if (v.code === value.code) {
-                  v.order = !v.order;
+                  v.order = false;
                 }
                 return v;
               }),
             }));
           }}
-          // data-bs-toggle="offcanvas"
-          // data-bs-target="#offcanvasRight"
-          // aria-controls="offcanvasRight"
         >
           Remove from Cart
         </div>
@@ -70,7 +71,7 @@ export default function SingleProductCard({ value, index }) {
               ...prev,
               products: prev.products.map((v) => {
                 if (v.code === value.code) {
-                  v.order = !v.order;
+                  v.order = true;
                 }
                 return v;
               }),

@@ -16,7 +16,7 @@ export default function Login(props) {
       <Modal
         show={modalShow === 1}
         onHide={() => setModalShow(0)}
-        size="lg"
+        size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -34,13 +34,14 @@ export default function Login(props) {
 
               <div class="form-floating mb-2">
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
                   id="floatingInput"
-                  placeholder="name@example.com"
+                  placeholder="phone"
                 />
-                <label for="floatingInput">Email address</label>
+                <label for="floatingInput">Phone</label>
               </div>
+
               <div class="form-floating mb-2">
                 <input
                   type="password"
@@ -73,7 +74,7 @@ export default function Login(props) {
       <Modal
         show={modalShow === 2}
         onHide={() => setModalShow(0)}
-        size="lg"
+        size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
