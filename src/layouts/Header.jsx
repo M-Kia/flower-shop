@@ -4,9 +4,12 @@ import ShopContext from "../context/ShopContext";
 import SingleProductCard from "../components/SingleProductCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Button from "react-bootstrap/Button";
+import Login from "../components/Login";
 
 export default function Header() {
   const [checkText, setCheckText] = useState(true);
+  const [modalShow, setModalShow] = useState(false);
   let count = 0;
   const router = useRouter();
   useEffect(() => {
@@ -45,6 +48,7 @@ export default function Header() {
           <div
             className="d-flex align-items-center justify-content-end"
             style={{ cursor: "pointer" }}
+            onClick={() => setModalShow(true)}
           >
             <i
               className="bi bi-person-circle me-2"
@@ -85,7 +89,7 @@ export default function Header() {
             <div className="navbar-nav">
               <li className="nav-item dropdown">
                 <a
-                  href="#"
+                  href=""
                   className="nav-link dropdown-toggle"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -254,6 +258,7 @@ export default function Header() {
           )}
         </div>
       </div>
+      <Login show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 }

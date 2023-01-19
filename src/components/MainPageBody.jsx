@@ -9,11 +9,11 @@ import contactBackground from "../assets/images/pexels-lisa-fotios-1266302.jpg";
 import Link from "next/link";
 import ShopContext from "../context/ShopContext";
 export default function MainPageBody() {
-  const { data, collection, allProducts, setData, setCollection, setType } =
+  const { data, allProducts, collection, setData, setCollection, setType } =
     useContext(ShopContext);
 
   useEffect(() => {
-    console.log("HERE")
+    console.log("HERE");
     console.log(data);
     console.log(collection);
   }, [data]);
@@ -30,7 +30,8 @@ export default function MainPageBody() {
               href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
-                setCollection(true), setType(1);
+                setCollection(true);
+                setType(1);
               }}
             >
               Shop Collection
@@ -46,7 +47,8 @@ export default function MainPageBody() {
               href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
-                setCollection(true), setType(2);
+                setCollection(true);
+                setType(2);
               }}
             >
               Shop Collection
@@ -62,7 +64,8 @@ export default function MainPageBody() {
               href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
-                setCollection(true), setType(3);
+                setCollection(true);
+                setType(3);
               }}
             >
               Shop Collection
