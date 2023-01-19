@@ -100,6 +100,7 @@ const ShopContext = React.createContext({
     favorite: false,
     productInfo: "",
   },
+  type: "",
   setData: (state) => {},
   setAllProducts: (state) => {},
   setCactuses: (state) => {},
@@ -107,6 +108,7 @@ const ShopContext = React.createContext({
   setSucculents: (state) => {},
   setCollection: (state) => {},
   setSingleProduct: (state) => {},
+  setType: (state) => {},
 });
 
 export default ShopContext;
@@ -654,8 +656,11 @@ export const ShopContextProvider = ({ children, data: kData }) => {
     ],
   });
 
-  console.log("HERE");
-  console.log(kData);
+  const changeType = (state) => {
+    console.log({ state });
+    setType(state);
+  };
+
   return (
     <ShopContext.Provider
       value={{
@@ -674,7 +679,7 @@ export const ShopContextProvider = ({ children, data: kData }) => {
         setCollection,
         setAllProducts,
         setSingleProduct,
-        setType,
+        setType: changeType,
       }}
     >
       {children}

@@ -13,6 +13,7 @@ export default function MainPageBody() {
     useContext(ShopContext);
 
   useEffect(() => {
+    console.log("HERE")
     console.log(data);
     console.log(collection);
   }, [data]);

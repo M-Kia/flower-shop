@@ -17,7 +17,7 @@ export default function Header() {
     return () => clearInterval(Text);
   }, [checkText]);
 
-  const { collection, allProducts, setCollection, type } =
+  const { collection, allProducts, setCollection, type, setType } =
     useContext(ShopContext);
 
   allProducts.products.map((value) => (value.order ? count++ : ""));
@@ -99,7 +99,8 @@ export default function Header() {
                       className="dropdown-item"
                       href="/collection"
                       onClick={(e) => {
-                        setCollection(true), setType(1);
+                        setCollection(true);
+                        setType(1);
                       }}
                     >
                       cactus
@@ -110,7 +111,8 @@ export default function Header() {
                       className="dropdown-item"
                       href="/collection"
                       onClick={(e) => {
-                        setCollection(true), setType(2);
+                        setCollection(true);
+                        setType(2);
                       }}
                     >
                       plants
@@ -121,7 +123,8 @@ export default function Header() {
                       className="dropdown-item"
                       href="/collection"
                       onClick={(e) => {
-                        setCollection(true), setType(3);
+                        setCollection(true);
+                        setType(3);
                       }}
                     >
                       succulent
@@ -208,7 +211,7 @@ export default function Header() {
             ""
           ) : (
             <Link
-              href="./collection"
+              href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
                 setCollection(true);

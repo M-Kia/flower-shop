@@ -20,12 +20,12 @@ export default function App({ Component, pageProps, data }) {
   );
 }
 
-export function getServerSideProps() {
-  console.log("HERE");
+// export function getServerSideProps() {
+//   console.log("HERE");
 
-  return {
-    props: {
-      data: ["Hello", "World", "!"],
-    },
-  };
-}
+//   return {
+//     props: {
+//       data: ["Hello", "World", "!"],
+//     },
+//   };
+// }

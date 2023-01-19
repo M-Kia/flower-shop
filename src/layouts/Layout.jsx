@@ -17,7 +17,8 @@ export default function Layout({ children }) {
     }
     return <></>;
   }, [router.pathname]);
-
+  
+  console.log(router.pathname);
   return (
     <div className="mx-5">
       {header}
