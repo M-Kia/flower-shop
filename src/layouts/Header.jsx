@@ -48,7 +48,12 @@ export default function Header() {
           <div>
             <Login
               className="d-flex align-items-center justify-content-end"
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                background: "none",
+                border: "none",
+                color: "inherit",
+              }}
             />
           </div>
 
@@ -131,9 +136,9 @@ export default function Header() {
                   </li>
                 </ul>
               </li>
-              <a className="nav-link" href="#">
+              {/* <a className="nav-link" href="#">
                 about
-              </a>
+              </a> */}
               <a className="nav-link" href="#">
                 FAQ
               </a>

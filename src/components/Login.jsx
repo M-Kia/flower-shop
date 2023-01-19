@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import SignUp from "../components/SignUp";
 
 export default function Login(props) {
   const [modalShow, setModalShow] = useState(0);
@@ -56,6 +55,7 @@ export default function Login(props) {
                 <label>
                   don't have an account?
                   <span
+                    className="ms-1"
                     style={{ cursor: "pointer", color: "#a05841" }}
                     onClick={() => setModalShow(2)}
                   >
@@ -63,7 +63,7 @@ export default function Login(props) {
                   </span>
                 </label>
               </div>
-              <button class="w-100 btn btn-lg btn-primary" type="submit">
+              <button class="w-100 shopbtn mt-0" type="submit">
                 Sign in
               </button>
             </form>
@@ -144,16 +144,16 @@ export default function Login(props) {
               <div class="checkbox mb-3">
                 <label>
                   have an account?
-                  <button
-                    className="btn btn-link"
+                  <span
+                    className="ms-1"
                     style={{ color: "#a05841" }}
                     onClick={() => setModalShow(1)}
                   >
                     sign in
-                  </button>
+                  </span>
                 </label>
               </div>
-              <button class="w-100 btn btn-lg btn-primary" type="submit">
+              <button class="w-100 shopbtn mt-0" type="submit">
                 Sign up
               </button>
             </form>
