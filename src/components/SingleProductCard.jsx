@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import ShopContext from "../context/ShopContext";
 import Link from "next/link";
 
-export default function SingleProductCard({ value, index }) {
+export default function SingleProductCard({ value, index, order = false }) {
   const { setSingleProduct, setAllProducts } = useContext(ShopContext);
 
   useEffect(() => {
@@ -29,6 +29,7 @@ export default function SingleProductCard({ value, index }) {
         >
           C{value.code} : {value.name}
         </Link>
+
         {value.discount !== "" ? (
           <div className="d-flex justify-content-evenly">
             <div className="card-text text-decoration-line-through">
@@ -42,7 +43,9 @@ export default function SingleProductCard({ value, index }) {
           <div className="card-text">${value.price}.00</div>
         )}
       </div>
-      {value.order ? (
+      {order ? (
+        ""
+      ) : value.order ? (
         <div
           className="btn shopbtn"
           style={{ marginTop: "0px", width: "100%" }}
