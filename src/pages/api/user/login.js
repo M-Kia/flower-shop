@@ -3,11 +3,12 @@ import { Op } from "sequelize";
 import { Users } from "../../../../server/models";
 
 export default function handler(req, res) {
-  const users = Users.findOne({
-    where: {
-      mobile: req.body.mobile,
-    },
-  });
-  console.log(users);
-  res.status(200).json({ name: "product", price: 15, description: "anything" });
+  const {mobile, password} = req.body;
+  
+  res.status(200).json({ status: true, user: {
+    firstName: "Mohammad",
+    lastName: "Kia",
+    mobile: "09119691078",
+    email: "smhkh1380@gmail.com",
+  } });
 }

@@ -1,8 +1,20 @@
+import axios from "axios";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
 export default function Login(props) {
   const [modalShow, setModalShow] = useState(0);
+
+  const loginApi = async () => {
+    let result = await axios.post('/api/user/login', {
+      mobile: "09119691078",
+      password: "12344321"
+    }).then(res => res.data)
+
+    if (result.status){
+      // result.user;
+    }
+  }
 
   return (
     <>
