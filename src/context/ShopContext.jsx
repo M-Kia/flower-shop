@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import c1 from "../assets/images/c1.webp";
 import c2 from "../assets/images/c2.webp";
 import c3 from "../assets/images/c3.webp";
@@ -21,6 +21,8 @@ import cactusCover from "../assets/images/cactusCover.jpg";
 import plantCover from "../assets/images/plantCover.jpg";
 import succulentCover from "../assets/images/succulentCover.jpg";
 import allCover from "../assets/images/allCover.jpg";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const ShopContext = React.createContext({
   cactuses: {
@@ -101,6 +103,10 @@ const ShopContext = React.createContext({
     productInfo: "",
   },
   type: "",
+  aboutRef: null,
+  faqRef: null,
+  scrollToAbout: () => {},
+  scrollToFAQ: () => {},
   setData: (state) => {},
   setAllProducts: (state) => {},
   setCactuses: (state) => {},
@@ -114,35 +120,26 @@ const ShopContext = React.createContext({
 export default ShopContext;
 
 export const ShopContextProvider = ({ children, data: kData }) => {
+  const router = useRouter();
+  const aboutRef = useRef(null);
+  const faqRef = useRef(null);
+
   const [collection, setCollection] = useState(false);
   //type:0 => all , 1 => cactus , 2 => plants , 3 => succulents
   const [type, setType] = useState(0);
-  const [singleProduct, setSingleProduct] = useState(
-    //   {
-    //   name: "product name",
-    // relatedCode:"",
-    // code: "",
-    //   pictures: [{ value: "" }],
-    //   price: "",
-    //   stock: "",
-    //   order: false,
-    //   favorite: false,
-    //   productInfo: "",
-    // }
-    {
-      name: "product name",
-      relatedCode: 1,
-      code: 1,
-      pictures: [{ value: c1.src }, { value: c1.src }, { value: c1.src }],
-      price: 30,
-      discount: 10,
-      stock: 20,
-      order: false,
-      favorite: false,
-      productInfo:
-        "Mollit id reprehenderit incididunt nulla commodo non exercitation est anim ad dolore et adipisicing. Excepteur adipisicing ex ad anim esse aute culpa do. Esse enim tempor in laborum exercitation laborum sint occaecat cillum sint veniam voluptate laboris nulla. Officia ullamco ipsum in aliqua do fugiat ipsum.",
-    }
-  );
+  const [singleProduct, setSingleProduct] = useState({
+    name: "product name",
+    relatedCode: 1,
+    code: 1,
+    pictures: [{ value: c1.src }, { value: c1.src }, { value: c1.src }],
+    price: 30,
+    discount: 10,
+    stock: 20,
+    order: false,
+    favorite: false,
+    productInfo:
+      "Mollit id reprehenderit incididunt nulla commodo non exercitation est anim ad dolore et adipisicing. Excepteur adipisicing ex ad anim esse aute culpa do. Esse enim tempor in laborum exercitation laborum sint occaecat cillum sint veniam voluptate laboris nulla. Officia ullamco ipsum in aliqua do fugiat ipsum.",
+  });
   const [allProducts, setAllProducts] = useState({
     headerAll: allCover.src,
     headerCactus: cactusCover.src,
@@ -404,6 +401,27 @@ export const ShopContextProvider = ({ children, data: kData }) => {
     ],
   });
 
+  const scrollToAbout = () => {
+    if (["/single-product", "/collection"].includes(router.pathname)) {
+      router.push("/", undefined, { shallow: true });
+      setTimeout(() => {
+        aboutRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    } else {
+      aboutRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToFAQ = () => {
+    if (["/single-product", "/collection"].includes(router.pathname)) {
+      router.push("/", undefined, { shallow: true });
+      setTimeout(() => {
+        faqRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    } else {
+      faqRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   const changeType = (state) => {
     console.log({ state });
     setType(state);
@@ -420,6 +438,10 @@ export const ShopContextProvider = ({ children, data: kData }) => {
         setAllProducts,
         setSingleProduct,
         setType: changeType,
+        aboutRef,
+        faqRef,
+        scrollToAbout,
+        scrollToFAQ,
       }}
     >
       {children}

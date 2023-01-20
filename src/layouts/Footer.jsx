@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import ShopContext from "../context/ShopContext";
 
 export default function Footer() {
+  const { scrollToFAQ } = useContext(ShopContext);
+
   return (
     <div className="Footer">
       <div className="d-flex justify-content-evenly">
@@ -30,7 +33,9 @@ export default function Footer() {
             <a href="#">Privacy Policy</a>
           </div>
           <div>
-            <a href="#">FAQ</a>
+            <a onClick={(e) => scrollToFAQ()} style={{ cursor: "pointer" }}>
+              FAQ
+            </a>
           </div>
         </div>
       </div>

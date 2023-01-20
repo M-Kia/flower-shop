@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import background from "../assets/images/pexels-huy-phan-3076899.jpg";
 import ShopContext from "../context/ShopContext";
 import SingleProductCard from "../components/SingleProductCard";
@@ -8,10 +8,24 @@ import Button from "react-bootstrap/Button";
 import Login from "../components/Login";
 
 export default function Header() {
+  const {
+    collection,
+    allProducts,
+    setCollection,
+    type,
+    setType,
+    scrollToAbout,
+    scrollToFAQ,
+  } = useContext(ShopContext);
+
   const [checkText, setCheckText] = useState(true);
   const [modalShow, setModalShow] = useState(false);
+
   let count = 0;
+  allProducts.products.map((value) => (value.order ? count++ : ""));
+
   const router = useRouter();
+
   useEffect(() => {
     const Text = setTimeout(() => {
       setCheckText((checkText) => !checkText);
@@ -19,11 +33,6 @@ export default function Header() {
 
     return () => clearInterval(Text);
   }, [checkText]);
-
-  const { collection, allProducts, setCollection, type, setType } =
-    useContext(ShopContext);
-
-  allProducts.products.map((value) => (value.order ? count++ : ""));
 
   return (
     <div className="Header">
@@ -46,7 +55,13 @@ export default function Header() {
 
         <div className="d-flex">
           <div>
-            <Login
+            <Link href={"/profile"} style={{ color: "inherit" }}>
+              <i
+                className="bi bi-person-circle me-2"
+                style={{ fontSize: "1.5rem" }}
+              ></i>
+            </Link>
+            {/* <Login
               className="d-flex align-items-center justify-content-end"
               style={{
                 cursor: "pointer",
@@ -54,7 +69,7 @@ export default function Header() {
                 border: "none",
                 color: "inherit",
               }}
-            />
+            /> */}
           </div>
 
           <div className="ms-5" style={{ cursor: "pointer" }}>
@@ -136,10 +151,18 @@ export default function Header() {
                   </li>
                 </ul>
               </li>
-              {/* <a className="nav-link" href="#">
+              <a
+                className="nav-link"
+                onClick={() => scrollToAbout()}
+                style={{ cursor: "pointer" }}
+              >
                 about
-              </a> */}
-              <a className="nav-link" href="#">
+              </a>
+              <a
+                className="nav-link"
+                onClick={() => scrollToFAQ()}
+                style={{ cursor: "pointer" }}
+              >
                 FAQ
               </a>
               <a className="nav-link disabled">entertainment</a>

@@ -9,7 +9,7 @@ import contactBackground from "../assets/images/pexels-lisa-fotios-1266302.jpg";
 import Link from "next/link";
 import ShopContext from "../context/ShopContext";
 export default function MainPageBody() {
-  const { data, allProducts, collection, setData, setCollection, setType } =
+  const { data, collection, setCollection, setType, aboutRef, faqRef } =
     useContext(ShopContext);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function MainPageBody() {
           </div>
         </div>
       </div>
-      <div className="d-flex flex-column about">
+      <div className="d-flex flex-column about" ref={aboutRef}>
         <div className="row">
           <div
             className="col-6 align-self-center"
@@ -111,19 +111,20 @@ export default function MainPageBody() {
             >
               BUY ONLINE NOW & GET 10% OFF !
             </div>
-            <div
+            <Link
+              href="/collection"
               className="btn shopbtn"
               onClick={(e) => {
-                setData(allProducts), setCollection(true);
+                setCollection(true);
               }}
             >
               Shop Now
-            </div>
+            </Link>
           </div>
         </div>
       </div>
 
-      <div className="card contact">
+      <div className="card contact" ref={faqRef}>
         <img
           src={contactBackground.src}
           style={{
