@@ -5,16 +5,27 @@ import Modal from "react-bootstrap/Modal";
 export default function Login(props) {
   const [modalShow, setModalShow] = useState(0);
 
-  const loginApi = async () => {
-    let result = await axios.post('/api/user/login', {
-      mobile: "09119691078",
-      password: "12344321"
-    }).then(res => res.data)
+  const [phoneIn, setPhoneIn] = useState("");
+  const [passwordIn, setPasswordIn] = useState("");
 
-    if (result.status){
-      // result.user;
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneUp, setPhoneUp] = useState("");
+  const [passwordUp, setpasswordUp] = useState("");
+
+  const loginApi = async () => {
+    let result = await axios
+      .post("/api/user/login", {
+        mobile: phoneIn,
+        password: passwordIn,
+      })
+      .then((res) => res.data);
+
+    if (result.status) {
+      console.log(result);
     }
-  }
+  };
 
   return (
     <>
@@ -50,6 +61,7 @@ export default function Login(props) {
                   class="form-control"
                   id="floatingInput"
                   placeholder="phone"
+                  onChange={(e) => setPhoneIn(e.target.value)}
                 />
                 <label for="floatingInput">Phone</label>
               </div>
@@ -60,6 +72,7 @@ export default function Login(props) {
                   class="form-control"
                   id="floatingPassword"
                   placeholder="Password"
+                  onChange={(e) => setPasswordIn(e.target.value)}
                 />
                 <label for="floatingPassword">Password</label>
               </div>
@@ -76,7 +89,11 @@ export default function Login(props) {
                   </span>
                 </label>
               </div>
-              <button class="w-100 shopbtn mt-0" type="submit">
+              <button
+                class="w-100 shopbtn mt-0"
+                type="submit"
+                onClick={(e) => loginApi()}
+              >
                 Sign in
               </button>
             </form>
@@ -109,6 +126,7 @@ export default function Login(props) {
                     class="form-control"
                     id="floatingInput"
                     placeholder="first name"
+                    onChange={(e) => setFirstname(e.target.value)}
                   />
                   <label for="floatingInput">First Name</label>
                 </div>
@@ -119,6 +137,7 @@ export default function Login(props) {
                     class="form-control"
                     id="floatingInput"
                     placeholder="last name"
+                    onChange={(e) => setLastname(e.target.value)}
                   />
                   <label for="floatingInput">Last Name</label>
                 </div>
@@ -130,6 +149,7 @@ export default function Login(props) {
                   class="form-control"
                   id="floatingInput"
                   placeholder="phone"
+                  onChange={(e) => setPhoneUp(e.target.value)}
                 />
                 <label for="floatingInput">Phone</label>
               </div>
@@ -140,6 +160,7 @@ export default function Login(props) {
                   class="form-control"
                   id="floatingInput"
                   placeholder="name@example.com"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <label for="floatingInput">Email address</label>
               </div>
@@ -150,6 +171,7 @@ export default function Login(props) {
                   class="form-control"
                   id="floatingPassword"
                   placeholder="Password"
+                  onChange={(e) => setpasswordUp(e.target.value)}
                 />
                 <label for="floatingPassword">Password</label>
               </div>

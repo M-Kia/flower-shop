@@ -4,6 +4,14 @@ import SingleProductCard from "./SingleProductCard";
 
 export default function Profile() {
   const { allProducts } = useContext(ShopContext);
+  const [edit, setEdit] = useState(false);
+
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setpassword] = useState("");
+
   const data = {
     firstname: "hedieh",
     lastname: "moshtaghi",
@@ -30,13 +38,27 @@ export default function Profile() {
     ],
     favorites: [
       {
-        productCode: 17,
+        productCode: 16,
+      },
+      {
+        productCode: 14,
+      },
+      {
+        productCode: 11,
+      },
+      {
+        productCode: 3,
       },
     ],
   };
 
-  const [edit, setEdit] = useState(false);
-
+  const onSaveHandler = () => {
+    //handle save button click
+    console.log("here");
+  };
+  const RemoveHandler = () => {
+    //handle remove favorite button click
+  };
   return (
     <div className="row col-12 justify-content-center my-5">
       <div
@@ -46,28 +68,45 @@ export default function Profile() {
         <div className="col-12 row px-4">
           <div className="d-flex justify-content-between mb-3">
             <div>
-              <i
-                class="bi bi-save"
-                style={{
-                  color: "#a05841",
-                  fontSize: "1.5rem",
-                  cursor: "pointer",
-                }}
-              ></i>
+              {edit ? (
+                <i
+                  className="bi bi-save"
+                  style={{
+                    color: "#a05841",
+                    fontSize: "1.5rem",
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => onSaveHandler()}
+                ></i>
+              ) : (
+                ""
+              )}
             </div>
             <div>
-              <i
-                class="bi bi-pencil-square"
-                style={{
-                  color: "#a05841",
-                  fontSize: "1.5rem",
-                  cursor: "pointer",
-                }}
-                onClick={(e) => setEdit(!edit)}
-              ></i>
+              {edit ? (
+                <i
+                  class="bi bi-backspace"
+                  style={{
+                    color: "#a05841",
+                    fontSize: "1.5rem",
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => setEdit(false)}
+                ></i>
+              ) : (
+                <i
+                  className="bi bi-pencil-square"
+                  style={{
+                    color: "#a05841",
+                    fontSize: "1.5rem",
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => setEdit(!edit)}
+                ></i>
+              )}
             </div>
           </div>
-          <label for="firstname" className="col-sm-2 mb-2 col-form-label">
+          <label htmlFor="firstname" className="col-sm-2 mb-2 col-form-label">
             Firstname
           </label>
           <div className="col-sm-4 mb-2">
@@ -75,12 +114,13 @@ export default function Profile() {
               type="text"
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="firstname"
-              readonly={!edit}
-              value={data.firstname}
+              readOnly={!edit}
+              defaultValue={data.firstname}
+              onChange={(e) => setFirstname(e.target.value)}
             />
           </div>
 
-          <label for="lastname" className="col-sm-2 mb-2 col-form-label">
+          <label htmlFor="lastname" className="col-sm-2 mb-2 col-form-label">
             Lastname
           </label>
           <div className="col-sm-4 mb-2">
@@ -88,12 +128,13 @@ export default function Profile() {
               type="text"
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="lastname"
-              readonly={!edit}
-              value={data.lastname}
+              readOnly={!edit}
+              defaultValue={data.lastname}
+              onChange={(e) => setLastname(e.target.value)}
             />
           </div>
 
-          <label for="phone" className="col-sm-2 mb-2 col-form-label">
+          <label htmlFor="phone" className="col-sm-2 mb-2 col-form-label">
             Phone Number
           </label>
           <div className="col-sm-4 mb-2">
@@ -101,12 +142,13 @@ export default function Profile() {
               type="text"
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="phone"
-              readonly={!edit}
-              value={data.phone}
+              readOnly={!edit}
+              defaultValue={data.phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </div>
 
-          <label for="staticEmail" className="col-sm-2 mb-2 col-form-label">
+          <label htmlFor="staticEmail" className="col-sm-2 mb-2 col-form-label">
             Email
           </label>
           <div className="col-sm-4 mb-2">
@@ -114,12 +156,13 @@ export default function Profile() {
               type="email"
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="staticEmail"
-              readonly={!edit}
-              value={data.email}
+              readOnly={!edit}
+              defaultValue={data.email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <label for="password" className="col-sm-2 mb-2 col-form-label">
+          <label htmlFor="password" className="col-sm-2 mb-2 col-form-label">
             Password
           </label>
           <div className="col-sm-4 mb-2">
@@ -127,8 +170,9 @@ export default function Profile() {
               type="password"
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="password"
-              readonly={!edit}
-              value={data.password}
+              readOnly={!edit}
+              defaultValue={data.password}
+              onChange={(e) => setpassword(e.target.value)}
             />
           </div>
         </div>
@@ -160,9 +204,9 @@ export default function Profile() {
                   hourCycle: "h24",
                 });
                 return (
-                  <div className="col-4 text-center mb-5">
-                    <div>
-                      Date Of Order : {formattedDate + " " + formattedTime}{" "}
+                  <div className="col-3 text-center mb-5" key={index}>
+                    <div className="fs-5 text-start">
+                      Date Of Order: {formattedDate + " " + formattedTime}{" "}
                     </div>
                     <SingleProductCard
                       value={value}
@@ -175,6 +219,47 @@ export default function Profile() {
             })}
           </div>
         </div>
+        <hr />
+        <div className="col-12 mt-2 px-4 singleProduct">
+          <div className="fs-3">Favorites:</div>
+          <br />
+          <div className="row">
+            {allProducts.products.map((value, index) => {
+              let val;
+              if (
+                data.favorites.findIndex((v) => {
+                  if (v.productCode === value.code) {
+                    val = v;
+                    return true;
+                  }
+                  return false;
+                }) !== -1
+              ) {
+                return (
+                  <div className="col-3 text-center mb-5" key={index}>
+                    <div className="text-end" onClick={(e) => RemoveHandler()}>
+                      <i
+                        class="bi bi-trash3"
+                        style={{
+                          color: "#a05841",
+                          fontSize: "1.5rem",
+                          cursor: "pointer",
+                        }}
+                      ></i>
+                    </div>
+                    <SingleProductCard
+                      value={value}
+                      index={index}
+                      order={true}
+                    />
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </div>
+        <hr />
+        <div className="text-center fs-5">Have Good Day ❤</div>
       </div>
     </div>
   );

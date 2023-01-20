@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ShopContext from "../context/ShopContext";
 import SingleProductCard from "../components/SingleProductCard";
 import Link from "next/link";
+import Login from "../components/Login";
 
 export default function MiniHeader() {
   const { allProducts, setCollection, setType } = useContext(ShopContext);
@@ -39,11 +40,15 @@ export default function MiniHeader() {
             className="d-flex align-items-center justify-content-end"
             style={{ cursor: "pointer" }}
           >
-            <i
-              className="bi bi-person-circle me-2"
-              style={{ fontSize: "1.5rem" }}
-            ></i>
-            <div>Log in</div>
+            <Login
+              className="d-flex align-items-center justify-content-end"
+              style={{
+                cursor: "pointer",
+                background: "none",
+                border: "none",
+                color: "inherit",
+              }}
+            />
           </div>
 
           <div className="ms-5" style={{ cursor: "pointer" }}>

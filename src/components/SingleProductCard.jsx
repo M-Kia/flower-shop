@@ -6,7 +6,7 @@ export default function SingleProductCard({ value, index, order = false }) {
   const { setSingleProduct, setAllProducts } = useContext(ShopContext);
 
   useEffect(() => {
-    console.log(value);
+    // console.log(value);
   }, [value]);
 
   return (
