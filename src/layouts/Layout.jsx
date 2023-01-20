@@ -12,12 +12,12 @@ export default function Layout({ children }) {
   const header = useMemo(() => {
     if (["/", "/collection"].includes(router.pathname)) {
       return <Header />;
-    } else if (["/single-product"].includes(router.pathname)) {
+    } else if (["/single-product", "/profile"].includes(router.pathname)) {
       return <MiniHeader />;
     }
     return <></>;
   }, [router.pathname]);
-  
+
   console.log(router.pathname);
   return (
     <div className="mx-5">

@@ -55,7 +55,13 @@ export default function Header() {
 
         <div className="d-flex">
           <div>
-            <Login
+            <Link href={"/profile"} style={{ color: "inherit" }}>
+              <i
+                className="bi bi-person-circle me-2"
+                style={{ fontSize: "1.5rem" }}
+              ></i>
+            </Link>
+            {/* <Login
               className="d-flex align-items-center justify-content-end"
               style={{
                 cursor: "pointer",
@@ -63,7 +69,7 @@ export default function Header() {
                 border: "none",
                 color: "inherit",
               }}
-            />
+            /> */}
           </div>
 
           <div className="ms-5" style={{ cursor: "pointer" }}>
