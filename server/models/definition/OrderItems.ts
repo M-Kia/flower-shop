@@ -1,94 +1,39 @@
-import {
-  Table,
-  Column,
-  DataType,
-  ForeignKey,
-  BelongsTo,
-} from "sequelize-typescript";
+import ActionRecord from "../../library/ActionRecord";
+import { Fields } from "../../types/ActionRecordTypes";
 
-import { BaseModel } from "./BaseModel";
+export default class OrdersItems extends ActionRecord {
+  tableName = "order_items";
 
-import { Orders } from "./Orders";
-import { Products } from "./Products";
-
-import type { CollectionsType, } from "../../types/dataTypes";
-
-@Table({
-  tableName: "order_items",
-})
-export class OrderItems extends BaseModel {
-  @ForeignKey(() => Orders)
-  @Column({
-    type: DataType.INTEGER,
-    field: "order_id",
-    allowNull: false,
-  })
-  public orderId!: number;
-
-  @BelongsTo(() => Orders)
-  public order!: Orders;
-
-  @ForeignKey(() => Products)
-  @Column({
-    type: DataType.INTEGER,
-    field: "product_id",
-    allowNull: false,
-  })
-  public productId!: number;
-
-  @BelongsTo(() => Products)
-  public product!: Products;
-
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    comment: "0 => Cacti, 1 => Plants, 2 => Succulents",
-  })
-  get collection(): CollectionsType {
-    switch (this.getDataValue("collection")) {
-      case 0:
-        return "Cacti";
-      case 1:
-        return "Plants";
-      default: // 2
-        return "Succulents";
-    }
-  }
-
-  set collection(value: CollectionsType) {
-    switch (value.toLowerCase()) {
-      case "Cacti":
-        this.setDataValue("collection", 0);
-        break;
-      case "Plants":
-        this.setDataValue("collection", 1);
-        break;
-      default: // Succulents
-        this.setDataValue("collection", 2);
-    }
-  }
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  public title!: string;
-
-  @Column({
-    type: DataType.STRING,
-    defaultValue: "",
-  })
-  public description!: string;
-
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  public price!: number;
-
-  @Column({
-    type: DataType.INTEGER,
-    defaultValue: 0,
-  })
-  public discount!: number;
+  fields: Fields[] = [
+    {
+      name: "id",
+      property: { type: "int", notNull: true },
+      dependency: { type: "ispk" },
+    },
+    {
+      name: "order_id",
+      property: { type: "int", notNull: true },
+      dependency: {
+        type: "isfk",
+        table: "orders",
+        field: "id",
+        force: true,
+      },
+    },
+    {
+      name: "product_id",
+      property: { type: "int", notNull: true },
+      dependency: {
+        type: "isfk",
+        table: "products",
+        field: "id",
+        force: true,
+      },
+    },
+    { name: "collectionId", property: { type: "int", notNull: true } }, // 0 => Cacti, 1 => Plants, 2 => Succulents
+    { name: "title", property: { type: "varchar", size: 255, notNull: true } },
+    { name: "description", property: { type: "varchar", size: 1000, notNull: true } },
+    { name: "price", property: { type: "int", notNull: true } },
+    { name: "discount", property: { type: "int" } },
+  ];
 }

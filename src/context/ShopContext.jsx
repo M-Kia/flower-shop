@@ -256,7 +256,7 @@ export const ShopContextProvider = ({ children, data: kData }) => {
         code: 9,
         pictures: [{ value: p3.src }],
         price: 30,
-        discount: 10,
+        discount: 50,
         stock: 20,
         order: false,
         favorite: false,

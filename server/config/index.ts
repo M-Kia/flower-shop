@@ -1,4 +1,4 @@
-export default {
+const config = {
   DATABASE_HOST: process.env.DATABASE_HOST,
   DATABASE_PORT: process.env.DATABASE_PORT,
   DATABASE_USER: process.env.DATABASE_USER,
@@ -6,3 +6,5 @@ export default {
   DATABASE_NAME: process.env.DATABASE_NAME,
   NODE_ENV: process.env.NODE_ENV,
 };
+
+export default config;

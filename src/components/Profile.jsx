@@ -1,8 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ShopContext from "../context/ShopContext";
 import SingleProductCard from "./SingleProductCard";
+import AuthenticationContext from "../context/AuthenticationContext";
 
 export default function Profile() {
+  const { userInfo } = useContext(AuthenticationContext);
+
   const { allProducts } = useContext(ShopContext);
   const [edit, setEdit] = useState(false);
 
@@ -59,6 +62,14 @@ export default function Profile() {
   const RemoveHandler = () => {
     //handle remove favorite button click
   };
+
+  useEffect(() => {
+    setFirstname(userInfo.firstname);
+    setLastname(userInfo.lastname);
+    setPhone(userInfo.mobile);
+    setEmail(userInfo.email);
+  });
+
   return (
     <div className="row col-12 justify-content-center my-5">
       <div
@@ -115,7 +126,7 @@ export default function Profile() {
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="firstname"
               readOnly={!edit}
-              defaultValue={data.firstname}
+              defaultValue={firstname}
               onChange={(e) => setFirstname(e.target.value)}
             />
           </div>
@@ -129,7 +140,7 @@ export default function Profile() {
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="lastname"
               readOnly={!edit}
-              defaultValue={data.lastname}
+              defaultValue={lastname}
               onChange={(e) => setLastname(e.target.value)}
             />
           </div>
@@ -143,7 +154,7 @@ export default function Profile() {
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="phone"
               readOnly={!edit}
-              defaultValue={data.phone}
+              defaultValue={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
@@ -157,12 +168,12 @@ export default function Profile() {
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="staticEmail"
               readOnly={!edit}
-              defaultValue={data.email}
+              defaultValue={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <label htmlFor="password" className="col-sm-2 mb-2 col-form-label">
+          {/* <label htmlFor="password" className="col-sm-2 mb-2 col-form-label">
             Password
           </label>
           <div className="col-sm-4 mb-2">
@@ -171,10 +182,10 @@ export default function Profile() {
               className={`form-control${edit ? "" : "-plaintext"}`}
               id="password"
               readOnly={!edit}
-              defaultValue={data.password}
+              defaultValue={password}
               onChange={(e) => setpassword(e.target.value)}
             />
-          </div>
+          </div> */}
         </div>
         <hr />
         <div className="col-12 mt-2 px-4 singleProduct">

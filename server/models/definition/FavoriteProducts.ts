@@ -1,39 +1,34 @@
-import {
-  Table,
-  Column,
-  DataType,
-  ForeignKey,
-  BelongsTo,
-} from "sequelize-typescript";
+import ActionRecord from "../../library/ActionRecord";
+import { Fields } from "../../types/ActionRecordTypes";
 
-import { BaseModel } from "./BaseModel";
+export default class FavoriteProducts extends ActionRecord {
+  tableName = "favorite_products";
 
-import { Users } from "./Users";
-import { Products } from "./Products";
-
-@Table({
-  tableName: "favorite_products",
-})
-export class FavoriteProducts extends BaseModel {
-  @ForeignKey(() => Users)
-  @Column({
-    type: DataType.INTEGER,
-    field: "user_id",
-    allowNull: false,
-  })
-  public userId!: number;
-
-  @BelongsTo(() => Users)
-  public user!: Users;
-
-  @ForeignKey(() => Products)
-  @Column({
-    type: DataType.INTEGER,
-    field: "product_id",
-    allowNull: false,
-  })
-  public productId!: number;
-
-  @BelongsTo(() => Products)
-  public product!: Products;
+  fields: Fields[] = [
+    {
+      name: "id",
+      property: { type: "int", notNull: true },
+      dependency: { type: "ispk" },
+    },
+    {
+      name: "user_id",
+      property: { type: "int", notNull: true },
+      dependency: {
+        type: "isfk",
+        field: "id",
+        table: "users",
+        force: true,
+      },
+    },
+    {
+      name: "product_id",
+      property: { type: "int", notNull: true },
+      dependency: {
+        type: "isfk",
+        field: "id",
+        table: "users",
+        force: true,
+      },
+    },
+  ];
 }

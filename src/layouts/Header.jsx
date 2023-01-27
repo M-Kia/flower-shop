@@ -6,8 +6,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Login from "../components/Login";
+import AuthenticationContext from "../context/AuthenticationContext";
 
 export default function Header() {
+  const { isLogin } = useContext(AuthenticationContext);
+
   const {
     collection,
     allProducts,
@@ -55,21 +58,24 @@ export default function Header() {
 
         <div className="d-flex">
           <div>
-            <Link href={"/profile"} style={{ color: "inherit" }}>
-              <i
-                className="bi bi-person-circle me-2"
-                style={{ fontSize: "1.5rem" }}
-              ></i>
-            </Link>
-            {/* <Login
-              className="d-flex align-items-center justify-content-end"
-              style={{
-                cursor: "pointer",
-                background: "none",
-                border: "none",
-                color: "inherit",
-              }}
-            /> */}
+            {isLogin ? (
+              <Link href={"/profile"} style={{ color: "inherit" }}>
+                <i
+                  className="bi bi-person-circle me-2"
+                  style={{ fontSize: "1.5rem" }}
+                ></i>
+              </Link>
+            ) : (
+              <Login
+                className="d-flex align-items-center justify-content-end"
+                style={{
+                  cursor: "pointer",
+                  background: "none",
+                  border: "none",
+                  color: "inherit",
+                }}
+              />
+            )}
           </div>
 
           <div className="ms-5" style={{ cursor: "pointer" }}>

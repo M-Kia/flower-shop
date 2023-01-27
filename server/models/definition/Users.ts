@@ -1,72 +1,24 @@
-import { Table, Column, DataType } from "sequelize-typescript";
+import ActionRecord from "../../library/ActionRecord";
+import { Fields } from "../../types/ActionRecordTypes";
 
-import { BaseModel } from "./BaseModel";
+export default class Users extends ActionRecord {
+  tableName = "users";
 
-import type { StatusType } from "../../types/dataTypes";
-
-@Table({
-  tableName: "users",
-})
-export class Users extends BaseModel {
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    field: "first_name",
-  })
-  public firstName!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    field: "last_name",
-  })
-  public lastName!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    unique: true,
-  })
-  public mobile!: string;
-
-  @Column({
-    type: DataType.STRING,
-    defaultValue: "",
-  })
-  public email!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  public password!: string;
-
-  @Column({
-    type: DataType.INTEGER,
-    defaultValue: 0,
-    comment: "0 => active, 1 => inactive, 2 => deleted",
-  })
-  get status(): StatusType {
-    switch (this.getDataValue("status")) {
-      case 0:
-        return "active";
-      case 1:
-        return "inactive";
-      default: // -1
-        return "deleted";
-    }
-  }
-
-  set status(value: StatusType) {
-    switch (value) {
-      case "active":
-        this.setDataValue("status", 0);
-        break;
-      case "inactive":
-        this.setDataValue("status", 1);
-        break;
-      default: // "deleted"
-        this.setDataValue("status", -1);
-    }
-  }
+  fields: Fields[] = [
+    {
+      name: "id",
+      property: { type: "int", notNull: true },
+      dependency: { type: "ispk" },
+    },
+    { name: "firstname", property: { type: "varchar", size: 255, notNull: true } },
+    { name: "lastname", property: { type: "varchar", size: 255, notNull: true } },
+    { name: "mobile", property: { type: "varchar", size: 255, notNull: true } },
+    { name: "email", property: { type: "varchar", size: 255 } },
+    {
+      name: "password",
+      property: { type: "varchar", size: 255 },
+      config: { encryption: true },
+    },
+    { name: "status", property: { type: "int" } }, // 0 => active, 1 => inactive, -1 => deleted
+  ];
 }

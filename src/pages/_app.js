@@ -5,6 +5,7 @@ import "../assets/fonts/MyFont.css";
 import { useEffect } from "react";
 import Layout from "../layouts/Layout";
 import { ShopContextProvider } from "../context/ShopContext";
+import { AuthenticationProvider } from "../context/AuthenticationContext";
 
 export default function App({ Component, pageProps, data }) {
   useEffect(() => {
@@ -12,11 +13,13 @@ export default function App({ Component, pageProps, data }) {
   }, []);
 
   return (
-    <ShopContextProvider data={data}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ShopContextProvider>
+    <AuthenticationProvider>
+      <ShopContextProvider data={data}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ShopContextProvider>
+    </AuthenticationProvider>
   );
 }
 

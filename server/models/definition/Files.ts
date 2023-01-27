@@ -1,29 +1,17 @@
-import { Table, Column, DataType } from "sequelize-typescript";
+import ActionRecord from "../../library/ActionRecord";
+import { Fields } from "../../types/ActionRecordTypes";
 
-import { BaseModel } from "./BaseModel";
+export default class Files extends ActionRecord {
+  tableName = "files";
 
-@Table({
-  tableName: "files",
-})
-export class Files extends BaseModel {
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  public path!: string;
-
-  @Column({
-    type: DataType.INTEGER,
-    field: "table_id",
-    allowNull: false,
-    comment: "0 => users, 1 => products",
-  })
-  public tableId!: number;
-
-  @Column({
-    type: DataType.INTEGER,
-    field: "record_id",
-    allowNull: false,
-  })
-  public recordId!: number;
+  fields: Fields[] = [
+    {
+      name: "id",
+      property: { type: "int", notNull: true },
+      dependency: { type: "ispk" },
+    },
+    { name: "path", property: { type: "varchar", size: 1000, notNull: true } },
+    { name: "table_id", property: { type: "int", notNull: true } }, // 0 => products
+    { name: "record_id", property: { type: "int", notNull: true } },
+  ];
 }

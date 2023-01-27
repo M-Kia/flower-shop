@@ -1,8 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "react-bootstrap/Modal";
+import AuthenticationContext from "../context/AuthenticationContext";
 
 export default function Login(props) {
+  const { login: mainLogin } = useContext(AuthenticationContext);
+
   const [modalShow, setModalShow] = useState(0);
 
   const [phoneIn, setPhoneIn] = useState("");
@@ -14,17 +17,44 @@ export default function Login(props) {
   const [phoneUp, setPhoneUp] = useState("");
   const [passwordUp, setpasswordUp] = useState("");
 
-  const loginApi = async () => {
-    let result = await axios
-      .post("/api/user/login", {
+  const loginApi = (e) => {
+    e.preventDefault();
+    axios
+      .post("/api/auth/login", {
         mobile: phoneIn,
         password: passwordIn,
       })
-      .then((res) => res.data);
+      .then((res) => {
+        if (res.data.status) {
+          mainLogin({
+            id: res.data.result.id,
+            token: res.data.result.token,
+            firstname: res.data.result.firstname,
+            lastname: res.data.result.lastname,
+            mobile: res.data.result.mobile,
+            email: res.data.result.email,
+            cartItems: res.data.result.cartItems,
+            favoriteProducts: res.data.result.favoriteProducts,
+          });
+        }
+      });
+  };
 
-    if (result.status) {
-      console.log(result);
-    }
+  const signupApi = (e) => {
+    e.preventDefault();
+    axios
+      .post("/api/auth/signup", {
+        firstname,
+        lastname,
+        mobile: phoneUp,
+        email,
+        password: passwordUp,
+      })
+      .then((res) => {
+        if (res.data.status) {
+          console.log("Signup successful");
+        }
+      });
   };
 
   return (
@@ -92,7 +122,7 @@ export default function Login(props) {
               <button
                 class="w-100 shopbtn mt-0"
                 type="submit"
-                onClick={(e) => loginApi()}
+                onClick={loginApi}
               >
                 Sign in
               </button>
@@ -188,7 +218,11 @@ export default function Login(props) {
                   </span>
                 </label>
               </div>
-              <button class="w-100 shopbtn mt-0" type="submit">
+              <button
+                class="w-100 shopbtn mt-0"
+                type="submit"
+                onClick={signupApi}
+              >
                 Sign up
               </button>
             </form>
